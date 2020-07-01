@@ -5,18 +5,49 @@
     <select id="getAllOrders" resultMap="Order">
         select * from OrderList
     </select>
+
+    <!--    获取所有未完成的订单-->
+    <select id="getOrdersByState" resultMap="Order">
+        select * from OrderList where orderState = #{state}
+    </select>
+
     <select id="getUserOrders" resultMap="Order">
         select * from OrderList where userId=#{userid}
     </select>
     <insert id="addOrder" parameterType="com.example.hotel.po.Order" useGeneratedKeys="true" keyProperty="id">
-        insert into OrderList(userId,hotelId,hotelName,checkInDate,checkOutDate,roomType,roomNum,peopleNum,haveChild,createDate,price,clientName,phoneNumber,orderState)
-        values(#{userId},#{hotelId},#{hotelName},#{checkInDate},#{checkOutDate},#{roomType},#{roomNum},#{peopleNum},#{haveChild},#{createDate},#{price},#{clientName},#{phoneNumber},#{orderState})
+        insert into OrderList(userId,hotelId,hotelName,checkInDate,checkOutDate,roomId,roomType,roomNum,peopleNum,haveChild,createDate,price,clientName,phoneNumber,orderState)
+        values(#{userId},#{hotelId},#{hotelName},#{checkInDate},#{checkOutDate},#{roomId},#{roomType},#{roomNum},#{peopleNum},#{haveChild},#{createDate},#{price},#{clientName},#{phoneNumber},#{orderState})
     </insert>
     <select id="getOrderById" resultMap="Order">
         select * from OrderList where id=#{orderid}
     </select>
-   <!--取消订单的数据库操作-->
 
+
+    <!--取消订单的数据库操作-->
+    <update id="annulOrder" >
+        update OrderList set orderState = "已撤销" where id = #{orderid}
+    </update>
+
+    <!--登记入住-->
+    <update id="checkInOrder" >
+        update OrderList set orderState = "已入住" where id = #{orderid}
+    </update>
+
+    <!--删除订单的数据库操作-->
+    <delete id="deleteOrder">
+        delete from OrderList where id = #{orderid}
+    </delete>
+    <delete id="deleteAppeal">
+        delete from Appeal where orderId =#{orderid}
+    </delete>
+
+<select id="getOrderByHotelId" resultMap="Order">
+    select * from OrderList where hotelId = #{hotelId} ;
+</select>
+
+    <update id="setAbnormal">
+        update OrderList set orderState = '异常' where id = #{id}
+    </update>
 
 
     <resultMap id="Order" type="com.example.hotel.po.Order">

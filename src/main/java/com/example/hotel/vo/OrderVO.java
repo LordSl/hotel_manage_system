@@ -1,5 +1,8 @@
 package com.example.hotel.vo;
 
+import com.example.hotel.po.Appeal;
+import com.example.hotel.po.HotelRoom;
+
 import java.util.Date;
 
 /**
@@ -13,6 +16,7 @@ public class OrderVO {
     private String hotelName;
     private String checkInDate;
     private String checkOutDate;
+    private Integer roomId;
     private String roomType;
     private Integer roomNum;
     private Integer peopleNum;
@@ -20,8 +24,32 @@ public class OrderVO {
     private String createDate;
     private Double price;
     private String clientName;
+
+    public AppealVO getAppeal() {
+        return appeal;
+    }
+
+    public void setAppeal(AppealVO appeal) {
+        this.appeal = appeal;
+    }
+
     private String phoneNumber;
     private String orderState;
+    private RoomVO room;
+
+    /**
+     * 评论所持有的申诉对象
+     */
+    private AppealVO appeal;
+
+
+    public String getRoomType() {
+        return roomType;
+    }
+
+    public void setRoomType(String roomType) {
+        this.roomType = roomType;
+    }
 
     public Integer getId() {
         return id;
@@ -62,12 +90,12 @@ public class OrderVO {
         this.checkOutDate = checkOutDate;
     }
 
-    public String getRoomType() {
-        return roomType;
+    public Integer getRoomId() {
+        return roomId;
     }
 
-    public void setRoomType(String roomType) {
-        this.roomType = roomType;
+    public void setRoomId(Integer roomId) {
+        this.roomId = roomId;
     }
 
     public Integer getRoomNum() {
@@ -129,6 +157,14 @@ public class OrderVO {
 
     public String getPhoneNumber() {
         return phoneNumber;
+    }
+
+    public RoomVO getRoom() {
+        return room;
+    }
+
+    public void setRoom(RoomVO room) {
+        this.room = room;
     }
 
     public void setPhoneNumber(String phoneNumber) {

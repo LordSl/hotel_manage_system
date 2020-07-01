@@ -3,9 +3,13 @@
 <mapper namespace="com.example.hotel.data.hotel.HotelMapper">
     <insert id="insertHotel" parameterType="com.example.hotel.po.Hotel"
     useGeneratedKeys="true" keyProperty="id">
-        insert into Hotel(address,bizRegion,hotelDescription,hotelStar,hotelName,phoneNum,rate,manager_id)
-        values (#{address},#{bizRegion},#{description},#{hotelStar},#{hotelName},#{phoneNum},#{rate},#{managerId})
+        insert into Hotel(address,bizRegion,hotelDescription,hotelStar,hotelName,phoneNum,rate,manager_id,hotelImg,longitude,latitude)
+        values (#{address},#{bizRegion},#{description},#{hotelStar},#{hotelName},#{phoneNum},#{rate},#{managerId},#{hotelImg},#{longitude},#{latitude})
     </insert>
+
+    <delete id="deleteHotel">
+        delete from Hotel where id = #{hotelId}
+    </delete>
 
     <select id="selectAllHotel" resultMap="Hotel">
         select * from Hotel
@@ -13,19 +17,44 @@
     <select id="selectById" resultMap="Hotel">
         select * from Hotel where id=#{id}
     </select>
+    <select id="selectByHMId" resultMap="Hotel">
+        select * from Hotel where manager_id=#{id}
+    </select>
+    <update id="updateHotelInfo" parameterType="com.example.hotel.po.Hotel">
+            update Hotel
+    <set>
+        address = #{address},
+        bizRegion = #{bizRegion},
+        hotelDescription = #{description},
+        hotelStar = #{hotelStar},
+        hotelName = #{hotelName},
+        phoneNum = #{phoneNum},
+        rate = #{rate},
+        longitude=#{longitude},
+        latitude=#{latitude}
+    </set>
+        where id = #{id}
+    </update>
+
+    <update id="updateHotelImg">
+        update hotel set hotelImg=#{hotelImg}
+        where id=#{id}
+    </update>
 
 
-    <resultMap id="Hotel" type="com.example.hotel.vo.HotelVO">
+    <resultMap id="Hotel" type="com.example.hotel.po.Hotel">
         <id column="id" property="id"></id>
         <result column="address" property="address"></result>
         <result column="bizRegion" property="bizRegion"></result>
         <result column="hotelDescription" property="description"></result>
         <result column="hotelStar" property="hotelStar"></result>
-        <result column="hotelName" property="name"></result>
+        <result column="hotelName" property="hotelName"></result>
         <result column="phoneNum" property="phoneNum"></result>
         <result column="rate" property="rate"></result>
         <result column="manager_id" property="managerId"></result>
-
+        <result column="hotelImg" property="hotelImg"></result>
+        <result column="longitude" property="longitude"></result>
+        <result column="latitude" property="latitude"></result>
     </resultMap>
 
 

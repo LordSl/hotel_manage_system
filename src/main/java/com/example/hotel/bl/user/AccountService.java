@@ -2,6 +2,7 @@ package com.example.hotel.bl.user;
 
 import com.example.hotel.po.User;
 import com.example.hotel.vo.*;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * @author huwen
@@ -21,14 +22,14 @@ public interface AccountService {
      *
      * @return
      */
-    User login(UserForm userForm);
+    UserVO login(UserForm userForm);
 
     /**
      * 获取用户个人信息
      * @param id
      * @return
      */
-    User getUserInfo(int id);
+    UserVO getUserInfo(int id);
 
     /**
      * 更新用户个人信息
@@ -40,5 +41,42 @@ public interface AccountService {
      */
     ResponseVO updateUserInfo(int id, String password,String username,String phonenumber);
 
+    /**
+     * 信用充值
+     * @param id
+     * @param amount
+     * @return
+     */
+    ResponseVO creditRecharge(int id, Double amount);
 
+    /**
+     * 更新用户信用
+     * @param id
+     * @param credit
+     * @return
+     */
+    ResponseVO updateUserCredit(int id,double credit);
+
+    /**
+     * 更新用户的头像
+     * @param id
+     * @param userImg
+     * @return
+     */
+    ResponseVO updateUserAvatarUrl(int id,String userImg);
+
+
+    /**
+     * 设置用户为网站vip
+     * @param userId
+     * @param isWebVIP
+     * @return
+     */
+    ResponseVO setUserWebVIP(int userId, int isWebVIP);
+
+    /**
+     * 获取网站所有vip
+     * @return
+     */
+    ResponseVO getWebVIP();
 }

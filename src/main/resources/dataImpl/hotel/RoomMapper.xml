@@ -4,22 +4,50 @@
 
     <insert id="insertRoom" parameterType="com.example.hotel.po.HotelRoom"
     useGeneratedKeys="true" keyProperty="id">
-        insert into Room(roomType,price,curNum,total,hotel_id)
-        values (#{roomType},#{price},#{curNum},#{total},#{hotelId})
+        insert into Room(roomType,price,curNum,total,hotel_id,roomImg)
+        values (#{roomType},#{price},#{curNum},#{total},#{hotelId},#{roomImg})
     </insert>
 
     <select id="selectRoomsByHotelId" resultMap="room">
         select * from Room where hotel_id=#{hotelId}
     </select>
 
+    <select id="selectRoomByRoomId" resultMap="room">
+        select * from Room where id=#{id}
+    </select>
+
     <update id="updateRoomInfo">
-        update Room set curNum=curNum-#{curNum} where hotel_id=#{hotelId} and roomType=#{roomType}
+        update Room set curNum=#{curNum} where hotel_id=#{hotelId} and roomType=#{roomType}
+    </update>
+
+    <update id="updateRoom">
+        update Room
+        <set>
+            roomType = #{hotelRoom.roomType},
+            price = #{hotelRoom.price},
+            curNum = #{hotelRoom.curNum},
+            total = #{hotelRoom.total},
+        </set>
+        where id = #{hotelRoom.id}
+    </update>
+
+    <delete id="deleteRoom">
+        delete from Room where id = #{roomId}
+    </delete>
+
+    <update id="addRoomNum">
+        update Room set curNum=#{num}+curNum where id=#{roomId}
     </update>
 
     <select id="getRoomCurNum" resultType="int">
-        select curNum from Room where hotel_id=#{hotelId} and roomType=#{roomType}
+        select curNum from Room where id=#{roomId}
     </select>
 
+
+    <update id="updateRoomImg">
+        update Room set roomImg=#{roomImg}
+        where id=#{id}
+    </update>
 
     <resultMap id="room" type="com.example.hotel.po.HotelRoom">
         <id column="id" property="id"></id>
@@ -28,6 +56,7 @@
         <result column="curNum" property="curNum"></result>
         <result column="total" property="total"></result>
         <result column="hotel_id" property="hotelId"></result>
+        <result column="roomImg" property="roomImg"></result>
     </resultMap>
 
 

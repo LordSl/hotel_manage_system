@@ -14,6 +14,19 @@ public class UserVO {
     private String phoneNumber;
     private double credit;
     private UserType userType;
+    private String avatarUrl;
+    private int isWebVIP;
+
+    public int getIsWebVIP(){return isWebVIP;}
+    public void setIsWebVIP(int vip){isWebVIP = vip;}
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
+    }
 
     public Integer getId() {
         return id;

@@ -4,21 +4,88 @@ import com.example.hotel.enums.BizRegion;
 import com.example.hotel.enums.HotelStar;
 
 public class Hotel {
+
+    /**
+     * 酒店id
+     */
     private Integer id;
+
+    /**
+     * 酒店名
+     */
     private String hotelName;
+
+    /**
+     * 酒店地址
+     */
     private String address;
     /**
      * 商圈
      */
-    private BizRegion bizRegion;
-    private HotelStar hotelStar;
+    private String bizRegion;
+
+    /**
+     *
+     */
+    private String hotelStar;
+
+    /**
+     * 酒店评分
+     */
     private Double rate;
+
+    /**
+     * 酒店的简介
+     */
     private String description;
+
+    /**
+     * 酒店的电话号码
+     */
     private String phoneNum;
     /**
      * 酒店管理员id
      */
     private Integer managerId;
+
+    /**
+     * 酒店的图片Url
+     */
+    private String hotelImg;
+
+    /**
+     * 酒店所处的经度
+     */
+    private Double longitude;
+
+    /**
+     * 酒店所处的纬度
+     */
+    private Double latitude;
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getHotelImg() {
+        return hotelImg;
+    }
+
+    public void setHotelImg(String hotelImg) {
+        this.hotelImg = hotelImg;
+    }
 
     public Integer getId() {
         return id;
@@ -44,19 +111,19 @@ public class Hotel {
         this.address = address;
     }
 
-    public BizRegion getBizRegion() {
+    public String getBizRegion() {
         return bizRegion;
     }
 
-    public void setBizRegion(BizRegion bizRegion) {
+    public void setBizRegion(String bizRegion) {
         this.bizRegion = bizRegion;
     }
 
-    public HotelStar getHotelStar() {
+    public String getHotelStar() {
         return hotelStar;
     }
 
-    public void setHotelStar(HotelStar hotelStar) {
+    public void setHotelStar(String hotelStar) {
         this.hotelStar = hotelStar;
     }
 

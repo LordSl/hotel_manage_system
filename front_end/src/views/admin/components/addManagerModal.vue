@@ -24,6 +24,18 @@
                     ]"
                 />
             </a-form-item >
+          <a-form-item v-if = "userInfo.userType=='Manager'" v-bind="formItemLayout" label="用户类型">
+            <a-select
+                v-decorator="[
+                    'userType',
+                    { rules: [{ required: true, message: '请选择要添加的用户类型' }] }]"
+                @change="changeUserType"
+            >
+                <a-select-option value="Client">客户</a-select-option>
+                <a-select-option value="HotelManager">酒店管理人员</a-select-option>
+                <a-select-option value="Manager">网站管理人员</a-select-option>
+            </a-select>
+          </a-form-item>
     </a-Form>
     </a-modal>
 </template>
@@ -47,6 +59,7 @@ export default {
     },
     computed: {
         ...mapGetters([
+            'userInfo',
             'addManagerModalVisible',
             'managerList',
         ])
@@ -63,11 +76,13 @@ export default {
             'set_addManagerParams',
         ]),
         ...mapActions([
-            'getManagerList',
             'addManager',
         ]),
         cancel() {
             this.set_addManagerModalVisible(false)
+        },
+        changeUserType(v){
+
         },
         handleSubmit(e) {
             e.preventDefault();
@@ -75,11 +90,12 @@ export default {
                 if (!err) {
                     const data = {
                         email: this.form.getFieldValue('email'),
-                        password: this.form.getFieldValue('password')
+                        password: this.form.getFieldValue('password'),
+                        userType: this.form.getFieldValue('userType'),
                     }
                     this.set_addManagerParams(data)
+                    }
                     this.addManager()
-                }
             });
         },
     }

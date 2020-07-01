@@ -1,10 +1,7 @@
 package com.example.hotel.controller.coupon;
 
 import com.example.hotel.bl.coupon.CouponService;
-import com.example.hotel.vo.CouponVO;
-import com.example.hotel.vo.HotelTargetMoneyCouponVO;
-import com.example.hotel.vo.OrderVO;
-import com.example.hotel.vo.ResponseVO;
+import com.example.hotel.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,6 +19,24 @@ public class CouponController {
 
         return ResponseVO.buildSuccess(couponVO);
     }
+
+    @PostMapping("/hotelTargetRoom")
+    public ResponseVO addHotelTargetRoomCoupon(@RequestBody HotelTargetRoomCouponVO hotelTargetRoomCouponVO) {
+
+        CouponVO couponVO = couponService.addHotelTargetRoomCoupon(hotelTargetRoomCouponVO);
+
+        return ResponseVO.buildSuccess(couponVO);
+    }
+
+    @PostMapping("/hotelTargetTime")
+    public ResponseVO addHotelTimeCoupon(@RequestBody TimeCouponVO timeCouponVO) {
+
+        CouponVO couponVO = couponService.addTimeCoupon(timeCouponVO);
+
+        return ResponseVO.buildSuccess(couponVO);
+    }
+
+
 
     @GetMapping("/hotelAllCoupons")
     public ResponseVO getHotelAllCoupons(@RequestParam Integer hotelId) {
@@ -46,4 +61,19 @@ public class CouponController {
     }
 
 
+
+    @GetMapping("/webCoupon")
+    public ResponseVO getWebCoupons(){
+        return ResponseVO.buildSuccess(this.couponService.getWebCoupons());
+    }
+
+    @GetMapping("/delete")
+    public ResponseVO deleteCoupon(@RequestParam Integer id){
+        return ResponseVO.buildSuccess(this.couponService.deleteCoupon(id));
+    }
+
+    @GetMapping("/{hotelId}/getCouponForDisplay")
+    public ResponseVO getCouponForDisplay(@PathVariable int hotelId){
+        return ResponseVO.buildSuccess(couponService.getCouponForDisplay(hotelId));
+    }
 }
