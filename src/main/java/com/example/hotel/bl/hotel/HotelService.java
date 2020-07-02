@@ -108,4 +108,13 @@ public interface HotelService {
      * @return
      */
     HotelVO getHotelById(Integer id);
+
+    /**
+     * 获取特定时期的房间数
+     * @param hotelId
+     * @param checkInDate
+     * @param checkOutDate
+     * @return
+     */
+    ResponseVO getHotelRoom(Integer hotelId,String checkInDate,String checkOutDate);
 }

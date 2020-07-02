@@ -66,4 +66,12 @@ export function getOrderRoomAPI(params) {
     })
 }
 
+export function getHotelRoomAPI(params) {
+    return axios({
+        url: `${api.hotelPre}/getHotelRoom`,
+        method: 'GET' ,
+        params,
+    })
+}
+
 

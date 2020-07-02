@@ -131,4 +131,8 @@ public class HotelController {
         return hPicService.deleteHPic(id);
     }
 
+    @GetMapping("/getHotelRoom")
+    public ResponseVO getHotelRoom(@RequestParam Integer hotelId,@RequestParam String checkInDate,@RequestParam String checkOutDate){
+        return hotelService.getHotelRoom(hotelId,checkInDate,checkOutDate);
+    }
 }

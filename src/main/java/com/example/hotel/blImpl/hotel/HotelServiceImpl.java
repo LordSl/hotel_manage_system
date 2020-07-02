@@ -26,6 +26,8 @@ import java.util.stream.Collectors;
 @Service
 public class HotelServiceImpl implements HotelService {
 
+
+    @Autowired HotelService hotelService;
     @Autowired
     private HotelMapper hotelMapper;
 
@@ -253,5 +255,14 @@ public class HotelServiceImpl implements HotelService {
         BeanUtils.copyProperties(hotel,hotelVO);
         hotelVO.setName(hotel.getHotelName());
         return hotelVO;
+    }
+
+    @Override
+    public ResponseVO getHotelRoom(Integer hotelId, String checkInDate, String checkOutDate) {
+        List<RoomVO> roomVOS=roomService.retrieveHotelRoomInfo(hotelId);
+        for(RoomVO roomVO:roomVOS){
+            roomVO.setCurNum(roomService.getRoomNum(roomVO.getId(),checkInDate,checkOutDate));
+        }
+        return ResponseVO.buildSuccess(roomVOS);
     }
 }

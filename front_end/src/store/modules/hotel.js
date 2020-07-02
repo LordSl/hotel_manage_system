@@ -3,7 +3,8 @@ import store from '@/store'
 import {
     getHotelsAPI,
     getHotelByIdAPI,
-    searchHotelListAPI
+    searchHotelListAPI,
+    getHotelRoomAPI
 } from '@/api/hotel'
 import {
     getAdListAPI
@@ -37,6 +38,7 @@ import {
 import {
     uploadImgAPI,
 } from '@/api/oss'
+const moment = require('moment')
 
 const hotel = {
     state: {
@@ -167,7 +169,17 @@ const hotel = {
     },
 
     actions: {
-
+        getHotelRoom:async({commit, state},params) => {
+            const res = await getHotelRoomAPI(params)
+            const data={
+                rooms:res
+            }
+            if(res){
+                commit('set_currentHotelInfo', data)
+                console.log(state.currentHotelInfo)
+                console.log(res)
+            }
+        },
         getHotelList: async({commit, state}) => {
             const res = await getHotelsAPI()
             if(res){
@@ -181,7 +193,7 @@ const hotel = {
                 commit('set_advertisementList', res)
             }
         },
-        getHotelById: async({commit, state}) => {
+        getHotelById: async({commit, state,dispatch}) => {
             const res = await getHotelByIdAPI({
                 hotelId: state.currentHotelId
             })
@@ -191,9 +203,14 @@ const hotel = {
                 commit('set_imgList',res.picList)
                 const data1=state.imgList.filter(item => item.custom==true)
                 const  data2=state.imgList.filter(item => item.custom==false)
+                const params={
+                    hotelId:state.currentHotelId,
+                    checkInDate: moment().format('YYYY-MM-DD'),
+                    checkOutDate: moment().add(1,'day').format('YYYY-MM-DD'),
+                }
+                dispatch('getHotelRoom',params)
                 commit('set_userImgList',data1)
                 commit('set_hotelImgList',data2)
-                console.log(state.userImgList)
                 if(state.imgList.length>0){
                     commit('set_curHotelImg', state.imgList[0].imgUrl)
                 }else{
