@@ -82,11 +82,11 @@ CREATE TABLE `Hotel` (
 
 BEGIN;
 /*!40000 ALTER TABLE `Hotel` DISABLE KEYS */;
-INSERT INTO `Hotel` VALUES (1,'汉庭酒店','花园连体别墅酒店理念设计的豪华酒店','南京市鼓楼区珠江路28号','XiDan','Five',1829373819,4.8,3,'https://dimg11.c-ctrip.com/images/200a0v000000jzsw3EDFD_R_130_130.jpg',116.397428,39.90923);
-INSERT INTO `Hotel` VALUES (2,'儒家酒店','儒家酒店邀您共享古城南京的怀旧时刻','南京市鼓楼区珠江路68号','XiDan','Four',1829373819,4.8,4,'https://dimg11.c-ctrip.com/images/20030h00000095o40DFDA_R_130_130.jpg',116.397428,38.90923);
-INSERT INTO `Hotel` VALUES (3,'桂圆酒店','新装修！欢迎入住','南京市栖霞区珠江路268号','XiDan','Three',1829553719,4.8,3,'https://dimg11.c-ctrip.com/images/20020r000000h88sjDEF9_R_130_130.jpg',116.397428,37.90923);
-INSERT INTO `Hotel` VALUES (4,'丽呈睿轩酒店','Welcome to SanYa!','三亚市万达广场含南路263号','万达广场','Five',1829373819,4.9,5,'https://tse2-mm.cn.bing.net/th/id/OIP.djuTY-7i4CjU4vxXuklaJwHaGs?pid=Api&rs=1',109.500000,18.250000);
-INSERT INTO `Hotel` VALUES (5,'绿城度假酒店','夜入绿城，日出长城','北京市长城路99号','长城','Five',1829373819,4.9,5,'https://tse2-mm.cn.bing.net/th/id/OIP.0VMO62WWFun61xE-XXOIAgHaLH?pid=Api&rs=1',109.500000,18.250000);
+INSERT INTO `Hotel` VALUES (1,'汉庭酒店','花园连体别墅酒店理念设计的豪华酒店','南京市鼓楼区珠江路28号','XiDan','Five',1829373819,4.8,NULL,'https://dimg11.c-ctrip.com/images/200a0v000000jzsw3EDFD_R_130_130.jpg',116.397428,39.90923);
+INSERT INTO `Hotel` VALUES (2,'儒家酒店','儒家酒店邀您共享古城南京的怀旧时刻','南京市鼓楼区珠江路68号','XiDan','Four',1829373819,4.8,3,'https://dimg11.c-ctrip.com/images/20030h00000095o40DFDA_R_130_130.jpg',116.397428,38.90923);
+INSERT INTO `Hotel` VALUES (3,'桂圆酒店','新装修！欢迎入住','南京市栖霞区珠江路268号','XiDan','Three',1829553719,4.8,NULL,'https://dimg11.c-ctrip.com/images/20020r000000h88sjDEF9_R_130_130.jpg',116.397428,37.90923);
+INSERT INTO `Hotel` VALUES (4,'丽呈睿轩酒店','Welcome to SanYa!','三亚市万达广场含南路263号','万达广场','Five',1829373819,4.9,NULL,'https://tse2-mm.cn.bing.net/th/id/OIP.djuTY-7i4CjU4vxXuklaJwHaGs?pid=Api&rs=1',109.500000,18.250000);
+INSERT INTO `Hotel` VALUES (5,'绿城度假酒店','夜入绿城，日出长城','北京市长城路99号','长城','Five',1829373819,4.9,NULL,'https://tse2-mm.cn.bing.net/th/id/OIP.0VMO62WWFun61xE-XXOIAgHaLH?pid=Api&rs=1',109.500000,18.250000);
 /*!40000 ALTER TABLE `Hotel` ENABLE KEYS */;
 COMMIT;
 
@@ -190,6 +190,29 @@ INSERT INTO `HPic` VALUES (7,'https://tse1-mm.cn.bing.net/th/id/OIP.L0YCpBPE51xs
 INSERT INTO `HPic` VALUES (8,'https://m.tuniucdn.com/fb3/s1/2n9c/2EUGN2MMSGRFXJnhmuSqVeBRuLMK_w950_h600_c1_t0.jpg',1,0,0);
 /*!40000 ALTER TABLE `HPic` ENABLE KEYS */;
 COMMIT;
+
+
+
+-- Table structure for table `CreditChange`
+DROP TABLE IF EXISTS `CreditChange`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CreditChange` (
+                                 `id` int(11) NOT NULL AUTO_INCREMENT,
+                                 `userId` int(11) DEFAULT NULL,
+                                 `timeChanged` varchar(50) DEFAULT NULL,
+                                 `reason` varchar(50) DEFAULT NULL,
+                                 `valueChanged` double(255,0) DEFAULT NULL,
+                                 PRIMARY KEY (`id`)
+) ENGINE=InnoDB  AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+--
+-- Dumping data for table `Appeal`
+--
+/*!40000 ALTER TABLE `CreditChange` DISABLE KEYS */;
+/*!40000 ALTER TABLE `CreditChange` ENABLE KEYS */;
+
+
 
 
 

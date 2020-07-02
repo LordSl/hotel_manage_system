@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.hotel.data.user.CreditChangeMapper">
+
+<select id="getCreditChangeByUserId" resultMap="CreditChange">
+    select * from CreditChange where userId = #{userId}
+</select>
+
+
+
+    <insert id="addCreditChangeRecord" parameterType="com.example.hotel.po.CreditChange" useGeneratedKeys="true" keyProperty="id">
+        insert into CreditChange(userId,timeChanged,reason,valueChanged)
+        values(#{userId},#{timeChanged},#{reason},#{valueChanged})
+    </insert>
+
+    <resultMap id="CreditChange" type="com.example.hotel.po.CreditChange">
+    </resultMap>
+</mapper>

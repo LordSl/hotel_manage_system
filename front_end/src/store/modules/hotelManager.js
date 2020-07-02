@@ -240,8 +240,9 @@ const hotelManager = {
         // },
 
         getOrderListOfCurrentHotel:async ({state,commit})=>{
+            console.log('getOrderListOfCurrentHotel')
+
             let hotelId = state.currentHotelId
-            console.log(hotelId)
             const res = await getOrderListOfCurrentHotelAPI(hotelId)
             if(res){
                 commit('set_orderListOfCurrentHotel',res)
@@ -470,7 +471,7 @@ const hotelManager = {
         },
         changeAppealStatus: async ({state,dispatch}, data)=>{
             //传进来的data只是一个字符串
-            if(data == '审核通过'){
+            if(data === '审核通过'){
                 //恢复信用值
                 await creditRechargeAPI(state.appealCreditRechargeimfo)
             }

@@ -201,6 +201,7 @@ export default {
         ]),
     },
     async mounted() {
+
         await this.getHotelByHMId(this.userId)
         await this.autoUpdateOrderStatus()
         await this.getOrderListOfCurrentHotel()

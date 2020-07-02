@@ -6,6 +6,7 @@ const getters = {
   userId: state => state.user.userId,
   userInfo: state => state.user.userInfo,
   userOrderList: state => state.user.userOrderList,
+  creditChangeList:state => state.user.creditChangeList,
   userReplyList: state => state.user.userReplyList,
   hotelListLoading: state => state.hotel.hotelListLoading,
   hotelList: state => state.hotel.hotelList,

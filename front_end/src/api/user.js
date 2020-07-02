@@ -61,3 +61,10 @@ export function getWebVIPAPI() {
         method: 'GET'
     })
 }
+
+export function getCreditChangeAPI(userId) {
+    return axios({
+        url: `${api.userPre}/${userId}/getCreditChange`,
+        method: 'GET'
+    })
+}
