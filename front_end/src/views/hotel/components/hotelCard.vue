@@ -97,6 +97,7 @@ export default {
         display: flex;
         flex-direction: column;
         margin-left: 20px;
+        width: 400px;
         .items {
           display: flex;
           align-items: center;
