@@ -4,21 +4,96 @@ import com.example.hotel.enums.BizRegion;
 import com.example.hotel.enums.HotelStar;
 
 public class Hotel {
+
+    /**
+     * 酒店id
+     */
     private Integer id;
+
+    /**
+     * 酒店名
+     */
     private String hotelName;
+
+    /**
+     * 酒店地址
+     */
     private String address;
     /**
      * 商圈
      */
-    private BizRegion bizRegion;
-    private HotelStar hotelStar;
+    private String bizRegion;
+
+    public Integer getHotelStar() {
+        return hotelStar;
+    }
+
+    public void setHotelStar(Integer hotelStar) {
+        this.hotelStar = hotelStar;
+    }
+
+    /**
+     *酒店星级
+     */
+    private Integer hotelStar;
+
+    /**
+     * 酒店评分
+     */
     private Double rate;
+
+    /**
+     * 酒店的简介
+     */
     private String description;
+
+    /**
+     * 酒店的电话号码
+     */
     private String phoneNum;
     /**
      * 酒店管理员id
      */
     private Integer managerId;
+
+    /**
+     * 酒店的图片Url
+     */
+    private String hotelImg;
+
+    /**
+     * 酒店所处的经度
+     */
+    private Double longitude;
+
+    /**
+     * 酒店所处的纬度
+     */
+    private Double latitude;
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getHotelImg() {
+        return hotelImg;
+    }
+
+    public void setHotelImg(String hotelImg) {
+        this.hotelImg = hotelImg;
+    }
 
     public Integer getId() {
         return id;
@@ -44,21 +119,14 @@ public class Hotel {
         this.address = address;
     }
 
-    public BizRegion getBizRegion() {
+    public String getBizRegion() {
         return bizRegion;
     }
 
-    public void setBizRegion(BizRegion bizRegion) {
+    public void setBizRegion(String bizRegion) {
         this.bizRegion = bizRegion;
     }
 
-    public HotelStar getHotelStar() {
-        return hotelStar;
-    }
-
-    public void setHotelStar(HotelStar hotelStar) {
-        this.hotelStar = hotelStar;
-    }
 
     public Double getRate() {
         return rate;

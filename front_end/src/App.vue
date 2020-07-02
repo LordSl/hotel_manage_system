@@ -1,14 +1,32 @@
 <template>
   <div id="app" v-title data-title="NJUSE酒店管理系统">
     <transition name="fade-transform" mode="out-in">
-      <router-view/>
+      <router-view v-if="isRouterAlive"></router-view>
     </transition>
   </div>
 </template>
 <script>
 export default {
+  provide(){
+    return {
+      reload: this.reload
+    }
+  },
+  data(){
+    return {
+      isRouterAlive:true
+    }
+  },
   components: {
     
+  },
+  methods:{
+    reload(){
+      this.isRouterAlive=false
+      this.$nextTick(function () {
+        this.isRouterAlive=true
+      })
+    }
   }
 }
 </script>
@@ -20,8 +38,8 @@ export default {
   color: #2c3e50;
   width: 100%;
   padding: 20px 100px 144px;
-  background: #f0f2f5 url('assets/background.svg') repeat 100%;
-  min-height: 800px
+  background: #f8f7f7 url('assets/background.svg') repeat 100%;
+  min-height: 800px;
 }
 
 #nav {

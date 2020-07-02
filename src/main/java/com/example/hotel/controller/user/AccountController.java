@@ -2,13 +2,10 @@ package com.example.hotel.controller.user;
 
 import com.example.hotel.bl.user.AccountService;
 import com.example.hotel.po.User;
-import com.example.hotel.vo.UserForm;
-import com.example.hotel.vo.ResponseVO;
-import com.example.hotel.vo.UserInfoVO;
-import com.example.hotel.vo.UserVO;
+import com.example.hotel.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.multipart.MultipartFile;
 
 
 @RestController()
@@ -20,7 +17,7 @@ public class AccountController {
 
     @PostMapping("/login")
     public ResponseVO login(@RequestBody UserForm userForm) {
-        User user = accountService.login(userForm);
+        UserVO user = accountService.login(userForm);
         if (user == null) {
             return ResponseVO.buildFailure(ACCOUNT_INFO_ERROR);
         }
@@ -36,7 +33,7 @@ public class AccountController {
 
     @GetMapping("/{id}/getUserInfo")
     public ResponseVO getUserInfo(@PathVariable int id) {
-        User user = accountService.getUserInfo(id);
+        UserVO user = accountService.getUserInfo(id);
         if(user==null){
             return ResponseVO.buildFailure(ACCOUNT_INFO_ERROR);
         }
@@ -47,6 +44,32 @@ public class AccountController {
     public ResponseVO updateInfo(@RequestBody UserInfoVO userInfoVO,@PathVariable int id){
         return accountService.updateUserInfo(id,userInfoVO.getPassword(),userInfoVO.getUserName(),userInfoVO.getPhoneNumber());
 
+    }
+
+
+    @PostMapping("/{id}/creditRecharge")
+    public ResponseVO creditRecharge(@PathVariable int id,@RequestBody CreditRechargeVO creditRechargeVO){
+        return accountService.creditRecharge(id,creditRechargeVO.getAmount());
+    }
+
+    @GetMapping("/userInfo/userImg")
+    public ResponseVO updateUserAvatar(@RequestParam String userImg,@RequestParam Integer id){
+        return accountService.updateUserAvatarUrl(id,userImg);
+    }
+
+    @GetMapping("/userInfo/setVIP")
+    public ResponseVO setUserWebVIP(@RequestParam int userId,@RequestParam int isWebVIP){
+        return accountService.setUserWebVIP(userId,isWebVIP);
+    }
+
+    @GetMapping("/userInfo/getWebVIP")
+    public ResponseVO setUserWebVIP(){
+        return accountService.getWebVIP();
+    }
+
+    @GetMapping("/{userId}/getCreditChange")
+    public ResponseVO getCreditChange(@PathVariable int userId){
+        return accountService.getCreditChangeListByUserId(userId);
     }
 
 }

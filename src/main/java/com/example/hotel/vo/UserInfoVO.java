@@ -5,10 +5,15 @@ package com.example.hotel.vo;
  * @Date: 2020-03-03
  */
 public class UserInfoVO {
+    private Integer id;
     private String password;
     private String userName;
     private String phoneNumber;
+    private double credit;
 
+    public Integer getId(){ return id; }
+
+    public void setId(Integer id){ this.id = id; }
 
     public String getPassword() {
         return password;
@@ -32,5 +37,13 @@ public class UserInfoVO {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public double getCredit() {
+        return credit;
+    }
+
+    public void setCredit(double credit) {
+        this.credit = credit;
     }
 }

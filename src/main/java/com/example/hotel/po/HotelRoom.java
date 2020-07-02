@@ -3,18 +3,49 @@ package com.example.hotel.po;
 import com.example.hotel.enums.RoomType;
 
 public class HotelRoom {
+
+    /**
+     * 酒店房间主键id
+     */
     private Integer id;
-    private RoomType roomType;
+
+    /**
+     * 房间的房型
+     */
+    private String roomType;
+
+    /**
+     * 房间所对应的酒店
+     */
     private Integer hotelId;
+
+    /**
+     * 房间的价格
+     */
     private double price;
+
     /**
      * 当前剩余可预定房间数
      */
     private int curNum;
+
     /**
      * 某类型房间总数
      */
     private int total;
+
+    /**
+     * 房间的图片url
+     */
+    private String roomImg;
+
+    public String getRoomImg() {
+        return roomImg;
+    }
+
+    public void setRoomImg(String roomImg) {
+        this.roomImg = roomImg;
+    }
 
     public Integer getId() {
         return id;
@@ -24,11 +55,11 @@ public class HotelRoom {
         this.id = id;
     }
 
-    public RoomType getRoomType() {
+    public String getRoomType() {
         return roomType;
     }
 
-    public void setRoomType(RoomType roomType) {
+    public void setRoomType(String roomType) {
         this.roomType = roomType;
     }
 

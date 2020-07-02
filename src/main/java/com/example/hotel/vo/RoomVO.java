@@ -9,6 +9,26 @@ public class RoomVO {
     private Integer curNum;
     private Integer total;
 
+    private Integer hotelId;
+
+    private String roomImg;
+
+    public Integer getHotelId() {
+        return hotelId;
+    }
+
+    public void setHotelId(Integer hotelId) {
+        this.hotelId = hotelId;
+    }
+
+    public String getRoomImg() {
+        return roomImg;
+    }
+
+    public void setRoomImg(String roomImg) {
+        this.roomImg = roomImg;
+    }
+
     public Integer getId() {
         return id;
     }

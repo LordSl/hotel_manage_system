@@ -6,8 +6,25 @@
         values(#{email},#{password},#{userType})
     </insert>
     <select id="getAllManagers" resultMap="User">
-        select * from User where usertype='HotelManager'
+        select * from User
     </select>
+
+    <update id="updateManager" parameterType="com.example.hotel.po.User" useGeneratedKeys="true" keyProperty="id">
+        update User
+        <set>
+            credit = #{credit},
+            userName = #{userName},
+            phoneNumber = #{phoneNumber},
+            password = #{password}
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteManager" parameterType="com.example.hotel.po.User">
+        delete from User where id = #{id}
+    </delete>
+
+
 
 
     <resultMap id="User" type="com.example.hotel.po.User">

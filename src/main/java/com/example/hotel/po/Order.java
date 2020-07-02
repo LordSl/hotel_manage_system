@@ -1,5 +1,7 @@
 package com.example.hotel.po;
 
+import com.example.hotel.vo.RoomVO;
+
 import java.util.Date;
 
 /**
@@ -7,21 +9,103 @@ import java.util.Date;
  * @Date: 2020-02-29
  */
 public class Order {
+
+    /**
+     * 订单的主键id
+     */
     private Integer id;
+
+    /**
+     * 下订单的用户id
+     */
     private Integer userId;
+
+    /**
+     * 订单对应的酒店id
+     */
     private Integer hotelId;
+
+    /**
+     * 订单对应的酒店名
+     */
     private String hotelName;
+
+    /**
+     * 订单中的入住日期
+     */
     private String checkInDate;
+
+    /**
+     * 订单中的离开日期
+     */
     private String checkOutDate;
-    private String roomType;
+
+    /**
+     * 订单对应的房间id
+     */
+    private Integer roomId ;
+
+    /**
+     * 所需的房间数
+     */
     private Integer roomNum;
+
+    /**
+     * 入住的人数
+     */
     private Integer peopleNum;
+
+    /**
+     * 是否有小孩
+     */
     private boolean haveChild;
+
+    /**
+     * 订单创建的时间
+     */
     private String createDate;
+
+    /**
+     * 订单的总价
+     */
     private Double price;
+
+    /**
+     * 下订单的用户名
+     */
     private String clientName;
+
+    /**
+     * 订单的用户电话号码
+     */
     private String phoneNumber;
+
+    /**
+     * 订单的状态，分为已预订，已入住，已撤销，异常
+     */
     private String orderState;
+
+    /**
+     * 订单的房型
+     */
+    private String roomType;
+
+
+    public String getRoomType() {
+        return roomType;
+    }
+
+    public void setRoomType(String roomType) {
+        this.roomType = roomType;
+    }
+
+    public Integer getRoomId() {
+        return roomId;
+    }
+
+    public void setRoomId(Integer roomId) {
+        this.roomId = roomId;
+    }
 
     public Integer getId() {
         return id;
@@ -61,14 +145,6 @@ public class Order {
 
     public void setCheckOutDate(String checkOutDate) {
         this.checkOutDate = checkOutDate;
-    }
-
-    public String getRoomType() {
-        return roomType;
-    }
-
-    public void setRoomType(String roomType) {
-        this.roomType = roomType;
     }
 
     public Integer getRoomNum() {

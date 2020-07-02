@@ -1,53 +1,122 @@
 <template>
-  <a-card hoverable class="hotelCard ant-col-xs-7 ant-col-lg-5 ant-col-xxl-3">
-    <img
-      alt="example"
-      src="@/assets/cover.jpeg"
-      slot="cover"
-      referrerPolicy="no-referrer"
-    />
-    <a-tooltip :title="hotel.title" placement="top">
-      <a-card-meta :title="hotel.name">
-      <template slot="description">
-        <a-rate style="font-size: 15px" :value="hotel.rate" disabled allowHalf/> {{hotel.rate}}分
-      </template>
-    </a-card-meta>
-    </a-tooltip>
-  </a-card>
+
+  <div class="hotelDetailCard">
+    <div class="hotel-info">
+
+      <div class="originHotelInfo">
+        <a-card>
+          <img
+                  alt="example"
+                  :src="hotel.hotelImg"
+                  slot="cover"
+                  referrerPolicy="no-referrer"
+                  style="height:200px;float: left;width: 150px"
+          />
+        </a-card>
+        <div class="info">
+          <div class="items">
+            <span class="label">酒店名称：</span>
+            <span class="value">{{ hotel.name }}</span>
+          </div>
+          <div class="items" >
+            <span class="label">地址</span>
+            <span class="value">{{ hotel.address }}</span>
+          </div>
+          <div class="items" >
+            <span class="label">评分:</span>
+            <span class="value">{{ hotel.rate }}</span>
+          </div>
+          <div class="items" >
+            <span class="label">星级:</span>
+            <a-rate style="font-size: 15px" :value=hotel.hotelStar disabled allowHalf/>
+          </div>
+        </div>
+      </div>
+
+      <div class="leastMoneyText">
+<!--          <a-tag   color="orange" style="font-size: 16px" v-if="this.leastMoney !== 0"> 原价  {{this.leastMoney}} 元起-->
+<!--          </a-tag>-->
+                  <a-tag   color="orange" style="font-size: 12px;margin-bottom: 20px" v-if="this.leastMoney !== 0">￥
+                  </a-tag>
+
+        <span style="font-size: 60px;color: #FF6600" v-if="this.leastMoney !== 0"> {{this.leastMoney}}</span>
+        <span style="font-size: 12px;color: #FF6600;margin-top: 20px;margin-left: 10px" v-if="this.leastMoney !== 0">起</span>
+      </div>
+    </div>
+  </div>
 </template>
 <script>
+  import {mapActions, mapMutations} from "vuex";
+
 export default {
   name:'',
   props: {
     hotel: {}
   },
+
+  async mounted() {
+
+    this.getLeastMoney()
+  },
   data() {
     return{
-
+      leastMoney:0
     }
   },
+  methods:{
+    ...mapMutations([
+    ]) ,
+    ...mapActions([
+    ]) ,
+    getLeastMoney(){
+      let roomList = this.hotel.rooms
+      if(roomList.length === 0)return
+      let minMoney = roomList[0].price
+      for(let i = 1; i<roomList.length;i++){
+        if(roomList[i].price < minMoney)minMoney = roomList[i].price
+      }
+      this.leastMoney = minMoney
+    }
+  }
+
 }
 </script>
 <style scoped lang="less">
-    .hotelCard {
-        margin: 10px 10px;
-        min-width: 180px;
-        max-height: 350px;
-        img {
-          height: 250px;
-        }
-    }
-</style>
-
-<style lang="less">
-.hotelCard{
-  .ant-card-body{
-    padding: 12px
+  .hotelDetailCard {
+    padding: 50px 50px;
   }
-}
-
-.ant-card-hoverable:hover {
-  box-shadow: 0 2px 8px rgba(0,0,0,0.4)
-}
-
+  .hotel-info {
+    display: flex;
+    justify-content: space-between;
+    .originHotelInfo{
+      display: flex;
+      align-items: stretch;
+      justify-content: flex-start;
+      .info{
+        padding: 10px 0;
+        display: flex;
+        flex-direction: column;
+        margin-left: 20px;
+        width: 400px;
+        .items {
+          display: flex;
+          align-items: center;
+          margin-bottom: 10px;
+          .label{
+            margin-right: 10px;
+            font-size: 18px;
+          }
+          .value {
+            margin-right: 15px
+          }
+        }
+      }
+    }
+    .leastMoneyText{
+      display: flex;
+      align-items: center;
+      margin-left: 700px;
+    }
+  }
 </style>
+

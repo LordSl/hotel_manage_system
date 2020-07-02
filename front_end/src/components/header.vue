@@ -1,34 +1,77 @@
 <template>
     <div class="header">
         <div class="label">
-            <img src="@/assets/logo.svg" class="logo" alt="logo" @click="jumpToHome">
+            <img src="@/assets/bg.png" class="logo" alt="logo" @click="jumpToHome">
             <span class="title">NJUSE 酒店管理系统</span>
-            
+
         </div>
+
         <a-menu v-model="current" mode="horizontal" theme="light">
+
             <a-menu-item key="1" @click="selectMenu">
                 <router-link to="/hotel/hotelList">
                     <a-icon type="home" />首页
                 </router-link>
             </a-menu-item>
+
             <a-menu-item key="2" @click="jumpToUserInfo" v-if="userInfo.userType=='Client'">
                 <a-icon type="user" />个人中心
             </a-menu-item>
-            <a-menu-item key="3" @click="selectMenu" v-if="userInfo.userType=='HotelManager'">
+
+            <a-menu-item key="3" @click="selectMenu" v-if="userInfo.userType=='HotelManager'||userInfo.userType=='Manager'">
                 <router-link :to="{ name: 'manageHotel'}">
                      <a-icon type="switcher" />酒店管理
                 </router-link>
             </a-menu-item>
-            <a-menu-item key="4" @click="selectMenu" v-if="userInfo.userType=='Admin'">
+
+            <a-menu-item key="4" @click="selectMenu" v-if="userInfo.userType=='Manager'">
+            <!--当登录账户类型为网站管理人员时，显示账户管理界面-->
                 <router-link :to="{ name: 'manageUser'}">
                      <a-icon type="user" />账户管理
                 </router-link>
             </a-menu-item>
+
+            <a-menu-item key="5" @click="selectMenu" v-if="userInfo.userType=='HotelManager'">
+                <router-link :to="{ name: 'manageOrder'}">
+                    <a-icon type="switcher" />订单管理
+                </router-link>
+            </a-menu-item>
+
+            <a-menu-item key="6" @click="selectMenu" v-if="userInfo.userType=='Manager'">
+                <!--当登录账户类型为网站管理人员时，显示广告管理界面-->
+                <router-link :to="{ name: 'manageAdvertisement'}">
+                    <a-icon type="account-book" />广告管理
+                </router-link>
+            </a-menu-item>
+
+            <a-menu-item key="7" @click="selectMenu" v-if="userInfo.userType=='Manager'">
+                <!--当登录账户类型为网站管理人员时，显示网站优惠政策管理界面-->
+                <router-link :to="{ name: 'manageWebCoupon'}">
+                    <a-icon type="account-book" />网站优惠政策管理
+                </router-link>
+            </a-menu-item>
+
+            <a-menu-item key="8" @click="selectMenu" v-if="userInfo.userType=='HotelManager'">
+                <!--当登录账户类型为酒店管理人员时，显示酒店会员管理界面-->
+                <router-link :to="{ name: 'manageHotelVIP'}">
+                    <a-icon type="account-book" />酒店会员管理
+                </router-link>
+            </a-menu-item>
+
         </a-menu>
+
+
+            <div>
+                <span style="margin-right: 10px">主题色调: </span>
+                <a-input type="color" style="width:80px;" v-model="theme" @change="changeColor(false)">更换主题</a-input>
+            </div>
+
+
+
         <div class="logout">
             <a-dropdown placement="bottomCenter">
                 <div class="user">
-                    <a-avatar src="./defaultAvatar.png"></a-avatar>
+                    <a-avatar :src=userInfo.avatarUrl></a-avatar>
                     <span style="font-size: 14px">{{ userInfo.userName }}</span>
                     <a-icon style="margin-left: 3px; font-size: 16px" type="down"></a-icon>
                 </div>
@@ -58,13 +101,15 @@ export default {
     name: '',
     data() {
         return {
-            current: ['1']
+            current: ['1'],
+            theme:''
         }
     },
     computed: {
         ...mapGetters([
             'userId',
-            'userInfo'
+            'userInfo',
+            'color'
         ])
     },
     mounted() {
@@ -74,16 +119,38 @@ export default {
             this.current = ['2']
         }else if(this.$route.name == 'manageHotel') {
             this.current = ['3']
-        }else {
+        }else if(this.$route.name == 'manageUser'){
             this.current = ['4']
+        }else if(this.$route.name == 'manageOrder'){
+            this.current = ['5']
+        }else if(this.$route.name == 'manageAdvertisement'){
+            this.current = ['6']
+        }else if(this.$route.name == 'manageWebCoupon'){
+            this.current = ['7']
+        }else if(this.$route.name == 'manageHotelVIP'){
+            this.current = ['8']
         }
+        console.log("color in store" + this.color)
+        if(this.color===null){
+            this.set_color('#69004b')
+            this.theme='#69004b'
+            this.changeColor()
+            console.log(this.color)
+        }else{
+            this.theme=this.color
+            this.changeColor(true)
+        }
+    },
+    created(){
+        this.getUserInfo()
     },
     methods: {
         ...mapMutations([
-
+            'set_color'
         ]),
         ...mapActions([
-            'logout'
+            'logout',
+            'getUserInfo'
         ]),
         selectMenu(v){
         },
@@ -95,6 +162,40 @@ export default {
             this.$router.push({ name: 'userInfo', params: { userId: this.userId } })
         },
         jumpToHome() {
+
+        },
+        changeColor (judge) {
+            console.log(judge)
+            if(judge){
+                window.less
+                    .modifyVars({
+                        '@primary-color': this.color,
+                        '@link-color': this.color,
+                        '@btn-primary-bg': this.color
+                    })
+                    .then(() => {
+                        console.log('成功')
+                    })
+                    .catch(error => {
+                        alert('失败')
+                        console.log(error)
+                    })
+            }else{
+                window.less
+                    .modifyVars({
+                        '@primary-color': this.theme,
+                        '@link-color': this.theme,
+                        '@btn-primary-bg': this.theme
+                    })
+                    .then(() => {
+                        console.log('成功')
+                    })
+                    .catch(error => {
+                        alert('失败')
+                        console.log(error)
+                    })
+                this.set_color(this.theme)
+            }
 
         }
     }

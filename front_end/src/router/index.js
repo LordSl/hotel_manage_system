@@ -39,11 +39,31 @@ const routes = [
         name: 'manageHotel',
         component: () => import('@/views/hotelManager/manageHotel')
       },
+     {
+        path: '/hotelManager/manageOrder',
+        name: 'manageOrder',
+        component: () => import('@/views/hotelManager/manageOrder')
+      },
       {
         path: '/admin/manageUser',
         name: 'manageUser',
         component: () => import('@/views/admin/manageUser')
       },
+      {
+        path: '/admin/manageAdvertisement',
+        name: 'manageAdvertisement',
+        component: () => import('@/views/admin/manageAdvertisement')
+      },
+      {
+        path: '/admin/manageWebCoupon',
+        name: 'manageWebCoupon',
+        component: () => import('@/views/admin/manageWebCoupon')
+      },
+      {
+        path: '/hotelManager/manageHotelVIP',
+        name: 'manageHotelVIP',
+        component: () => import('@/views/hotelManager/manageHotelVIP')
+      }
     ]
   },
 ]

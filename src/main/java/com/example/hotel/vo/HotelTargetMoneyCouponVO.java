@@ -35,4 +35,6 @@ public class HotelTargetMoneyCouponVO extends CouponVO {
         this.discountMoney = discountMoney;
     }
 
+
+
 }

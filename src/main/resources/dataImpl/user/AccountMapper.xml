@@ -5,6 +5,7 @@
         insert into User(email,password,username,phonenumber,credit,usertype)
         values(#{email},#{password},#{userName},#{phoneNumber},#{credit},#{userType})
     </insert>
+
     <select id="getAccountByName" resultMap="User">
         select * from User where email=#{email}
     </select>
@@ -15,6 +16,25 @@
         update User set password=#{password},username=#{userName},phonenumber=#{phoneNumber}
         where id=#{id}
     </update>
+    <update id="updateUserImg">
+        update User set avatarurl=#{avatarUrl}
+        where id=#{id}
+    </update>
+    <update id="creditRecharge">
+        update USER  set credit=credit+#{amount}
+        where id=#{id}
+    </update>
+    <update id="updateAccountCredit" >
+        update User set credit = #{credit} where id = #{id}
+    </update>
+
+    <update id="setUserWebVIP">
+        update User set isWebVIP  = #{isWebVIP} where id =#{userId};
+    </update>
+
+    <select id="getWebVIP" resultMap="User">
+        select * from User where isWebVIP = 1
+    </select>
 
 
     <resultMap id="User" type="com.example.hotel.po.User">
@@ -25,5 +45,6 @@
         <result column="phonenumber" property="phoneNumber"></result>
         <result column="credit" property="credit"></result>
         <result column="usertype" property="userType"></result>
+        <result column="avatarurl" property="avatarUrl"></result>
     </resultMap>
 </mapper>

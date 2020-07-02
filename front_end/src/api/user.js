@@ -30,3 +30,41 @@ export function updateUserInfoAPI(data) {
         data
     })
 }
+
+export function creditRechargeAPI(data) {
+    return axios({
+        url: `${api.userPre}/${data.id}/creditRecharge`,
+        method: 'POST',
+        data
+    })
+}
+
+export function updateUserImgAPI(params) {
+    return axios({
+        url: `${api.userPre}/userInfo/userImg`,
+        method: 'GET' ,
+        params,
+    })
+}
+
+export function setWebVIPAPI(params) {
+    return axios({
+        url: `${api.userPre}/userInfo/setVIP`,
+        method: 'GET' ,
+        params,
+    })
+}
+
+export function getWebVIPAPI() {
+    return axios({
+        url: `${api.userPre}/userInfo/getWebVIP`,
+        method: 'GET'
+    })
+}
+
+export function getCreditChangeAPI(userId) {
+    return axios({
+        url: `${api.userPre}/${userId}/getCreditChange`,
+        method: 'GET'
+    })
+}
