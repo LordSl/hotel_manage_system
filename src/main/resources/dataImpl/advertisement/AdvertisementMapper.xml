@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.hotel.data.advertisement.AdvertisementMapper">
+
+<select id="getAdvertisementList" resultMap="Advertisement">
+    select * from Advertisement
+</select>
+
+    <delete id="deleteAD" >
+        delete from Advertisement where adId = #{id}
+    </delete>
+
+    <insert id="addADImg"  useGeneratedKeys="true">
+        insert into Advertisement(adImgUrl)
+        values(#{imgUrl})
+    </insert>
+    
+    <update id="bindADHotel">
+        update Advertisement set hotelId = #{hotelId} where adId = #{adId}
+    </update>
+
+    <resultMap id="Advertisement" type="com.example.hotel.po.Advertisement">
+    </resultMap>
+</mapper>

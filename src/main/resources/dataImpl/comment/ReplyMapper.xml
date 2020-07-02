@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.hotel.data.comment.ReplyMapper">
+
+    <insert id="insertReply" parameterType="com.example.hotel.po.Reply"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into Reply(comment_id,from_id,to_id,content,create_time,favor,fromName,fromAvatar,toName,toAvatar,state)
+        values (#{commentId},#{fromId},#{toId},#{content},#{createTime},#{favor},#{fromName},#{fromAvatar},#{toName},#{toAvatar},#{state})
+    </insert>
+
+    <select id="selectReplyByCommentId" resultMap="reply">
+        select * from Reply where comment_id=#{commentId} order by create_time desc
+    </select>
+
+    <select id="selectReplyByUserId" resultMap="reply">
+        select * from Reply where to_id=#{userId} order by state,create_time desc
+    </select>
+
+    <update id="updateReplyLikes">
+        update Reply set favor=favor+#{num} where id=#{id}
+    </update>
+
+    <delete id="deleteReply">
+        delete from Reply where id=#{id}
+    </delete>
+
+    <resultMap id="reply" type="com.example.hotel.po.Reply">
+        <id column="id" property="id"></id>
+        <result column="comment_id" property="commentId"></result>
+        <result column="create_time" property="createTime"></result>
+        <result column="favor" property="favor"></result>
+        <result column="content" property="content"></result>
+        <result column="to_id" property="toId"></result>
+        <result column="toName" property="toName"></result>
+        <result column="toAvatar" property="toAvatar"></result>
+        <result column="fromAvatar" property="fromAvatar"></result>
+        <result column="fromName" property="fromName"></result>
+        <result column="from_id" property="fromId"></result>
+        <result column="state" property="state"></result>
+    </resultMap>
+
+
+</mapper>

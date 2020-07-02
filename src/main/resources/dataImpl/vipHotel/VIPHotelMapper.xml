@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.hotel.data.vipHotel.VIPHotelMapper">
+    <insert id="registerAsHotelVIP">
+        insert into Viphotel(userId, hotelId)
+        values (#{userId}, #{hotelId})
+    </insert>
+
+    <select id="retriveByUidHid" resultMap="vipHotel">
+        select * from VipHotel where userId = #{userId} and hotelId = #{hotelId}
+    </select>
+
+    <select id="retriveByUserId" resultMap="vipHotel">
+        select * from VipHotel where userId = #{userId};
+    </select>
+
+    <select id="retriveByHotelId" resultMap="vipHotel">
+        select * from VipHotel where hotelId = #{hotelId};
+    </select>
+
+    <delete id="deleteVIPHotel">
+        delete from VipHotel where  hotelId = #{hotelId} and userId = #{userId}
+    </delete>
+
+    <resultMap id="vipHotel" type="com.example.hotel.po.VIPHotel">
+    </resultMap>
+</mapper>

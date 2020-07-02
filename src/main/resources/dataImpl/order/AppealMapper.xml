@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.hotel.data.order.AppealMapper">
+
+
+
+<!--    增加申诉-->
+    <insert id="appealOrder"  parameterType="com.example.hotel.po.Appeal" useGeneratedKeys="true" keyProperty="orderId">
+        insert into Appeal(orderId, appealMessage, appealStatus)
+        values(#{orderId}, #{appealMessage}, #{appealStatus})
+    </insert>
+
+    <select id="getAppealMessageById" resultMap="Appeal">
+        select appealMessage from Appeal where orderId =#{orderId}
+    </select>
+
+    <select id="getAppealById"  resultMap="Appeal">
+        select  * from Appeal where orderId = #{orderId}
+    </select>
+
+    <update id="setAppealStatus">
+        update Appeal set appealStatus = #{status} where orderId =#{orderId}
+    </update>
+
+
+    <resultMap id="Appeal" type="com.example.hotel.po.Appeal">
+    </resultMap>
+</mapper>
