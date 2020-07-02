@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class MultRoomStrategyImpl implements CouponMatchStrategy {
+
+
     @Override
     public boolean isMatch(OrderVO orderVO, Coupon coupon) {
         if(coupon.getCouponType()==2&&orderVO.getRoomNum()>=coupon.getTargetRoom()){

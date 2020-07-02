@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController()
 @RequestMapping("/api/admin")
 public class AdminController {
+
     @Autowired
     AdminService adminService;
 
@@ -44,5 +45,6 @@ public class AdminController {
         adminService.uploadAD(imgUrl);
         return ResponseVO.buildSuccess(true);
     }
+
 
 }

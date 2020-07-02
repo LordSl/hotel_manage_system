@@ -68,6 +68,7 @@ public class CouponServiceImpl implements CouponService {
         return availAbleCoupons;
     }
 
+
     @Override
     public List<Coupon> getHotelAllCoupon(Integer hotelId) {
         List<Coupon> hotelCoupons = couponMapper.selectByHotelId(hotelId);
@@ -94,7 +95,7 @@ public class CouponServiceImpl implements CouponService {
     }
 
     @Override
-    public CouponVO addHotelTargetRoomCoupon(HotelTargetRoomCouponVO couponVO) {
+    public CouponVO addHotelTargetRoomCoupon(HotelTargetRoomCouponVO couponVO){
         Coupon coupon = new Coupon();
         coupon.setCouponName(couponVO.getName());
         coupon.setDescription(couponVO.getDescription());
@@ -108,9 +109,16 @@ public class CouponServiceImpl implements CouponService {
         coupon.setStatus(1);
         coupon.setForHotelVip(couponVO.getForHotelVip());
         coupon.setDiscount(couponVO.getDiscount());
-        int result = this.couponMapper.insertCoupon(coupon);
-        couponVO.setId(result);
-        return couponVO;
+        try{
+            int result = this.couponMapper.insertCoupon(coupon);
+            couponVO.setId(result);
+            return couponVO;
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            return null;
+        }
+
+
     }
 
     @Override

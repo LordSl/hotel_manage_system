@@ -28,6 +28,7 @@ public class HotelServiceImpl implements HotelService {
 
 
     @Autowired HotelService hotelService;
+
     @Autowired
     private HotelMapper hotelMapper;
 
@@ -96,7 +97,7 @@ public class HotelServiceImpl implements HotelService {
 
     @Override
     public List<HotelVO> getHotelListByName(String hotelName) {
-        List<HotelVO>allHotel = retrieveHotels();
+        List<HotelVO>allHotel = hotelService.retrieveHotels();
         List<HotelVO>matchedList = new ArrayList<>();
         hotelName = hotelName.trim();
         for (HotelVO hotelVO:allHotel){

@@ -2,6 +2,7 @@ package com.example.hotel.serviceTest.commentTest;
 
 import com.example.hotel.bl.Comment.CommentService;
 import com.example.hotel.po.Comment;
+import com.example.hotel.po.CommentStatus;
 import com.example.hotel.vo.CommentVO;
 import com.example.hotel.vo.ResponseVO;
 import org.junit.Test;
