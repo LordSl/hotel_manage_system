@@ -256,7 +256,7 @@
                             haveChild: this.form.getFieldValue('haveChild'),
                             phoneNum:this.form.getFieldValue('phoneNumber'),
                             clientName:this.form.getFieldValue('clientName'),
-                            createDate: moment().format('YYYY-MM-DD hh:mm:ss'),
+                            createDate: moment().format('YYYY-MM-DD hh:mm:ss a'),
                             price: this.checkedList.length > 0 ? this.finalPrice: this.totalPrice
                         }
                         console.log(data)

@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 public class MultRoomStrategyImpl implements CouponMatchStrategy {
     @Override
     public boolean isMatch(OrderVO orderVO, Coupon coupon) {
-        if(coupon.getCouponType()==2&&orderVO.getRoomNum()>=coupon.getTargetRoom()){
+        if(coupon.getCouponType()==2&&orderVO.getRoomNum()>=coupon.getTargetRoom() && orderVO.getCheckInDate().compareTo(coupon.getStartTime()) >= 0 && orderVO.getCheckInDate().compareTo(coupon.getEndTime()) <= 0){
             //已经符和满减条件，下面判断是否符和会员
 
 

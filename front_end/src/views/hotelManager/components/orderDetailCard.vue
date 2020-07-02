@@ -53,8 +53,8 @@
             <!--            具体信息-->
             <a-row :gutter="1">
                 <a-col :span="8">
-                    <a-card title="订单编号" :bordered="false">
-                        <p>    {{currentOrderOfHM.id}}</p>
+                    <a-card title="客户姓名" :bordered="false">
+                        <p>    {{currentOrderOfHM.clientName}}</p>
                     </a-card>
                 </a-col>
                 <a-col :span="8">
@@ -63,8 +63,8 @@
                     </a-card>
                 </a-col>
                 <a-col :span="8">
-                    <a-card title="房间数量" :bordered="false">
-                        <p>{{currentOrderOfHM.roomNum}}</p>
+                    <a-card title="订单编号" :bordered="false">
+                        <p>{{currentOrderOfHM.id}}</p>
                     </a-card>
                 </a-col>
 
@@ -86,6 +86,27 @@
                     </a-card>
                 </a-col>
             </a-row>
+
+            <a-row :gutter="1">
+                <a-col :span="8">
+                    <a-card title="房间类型" :bordered="false">
+                        <p>    {{currentOrderOfHM.roomType}}</p>
+                    </a-card>
+                </a-col>
+                <a-col :span="8">
+                    <a-card title="单间价格" :bordered="false">
+                        <p>{{currentOrderOfHM.room.price}} RMB</p>
+                    </a-card>
+                </a-col>
+                <a-col :span="8">
+                    <a-card title="房间数量" :bordered="false">
+                        <p>{{currentOrderOfHM.roomNum}}</p>
+                    </a-card>
+                </a-col>
+
+            </a-row>
+
+
             <a-row :gutter="1">
                 <a-col :span="8">
                     <a-card title="入住人数" :bordered="false">
@@ -106,8 +127,11 @@
             </a-row>
 
 
+
+
         </a-card>
         <!--            具体信息-->
+
 
     </a-modal>
 
