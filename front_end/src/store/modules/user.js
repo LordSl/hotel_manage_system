@@ -10,7 +10,8 @@ import {
     updateUserInfoAPI,
     creditRechargeAPI,
     updateUserImgAPI,
-    setWebVIPAPI
+    setWebVIPAPI,
+    getCreditChangeAPI
 } from '@/api/user'
 
 import {
@@ -48,7 +49,8 @@ const getDefaultState = () => {
         },
         hotelListOfCurrentVIP:[],
         historyOrderModalVisible:false,
-        historyOrderList:[]
+        historyOrderList:[],
+        creditChangeList:[]
     }
 }
 
@@ -69,6 +71,9 @@ const user = {//定义对象user
                 state.orderDetailCardVisible = false,
                 state.currentOrderOfUser = {}
         } ,
+        set_creditChangeList:function(state,data){
+            state.creditChangeList = data
+        },
         set_historyOrderList:function(state,data){
             state.historyOrderList = data
             //查看历史订单
@@ -130,6 +135,10 @@ const user = {//定义对象user
                     router.push('/hotel/hotelList')//mutations的方法用commit，actions的方法用dispatch
                 }
             } ,
+            getCreditChangeList:async ({state,commit}) => {
+                const res = await getCreditChangeAPI(state.userId)
+                commit('set_creditChangeList',res)
+            } ,
             register: async ({commit} , data) => {
                 const res = await registerAPI(data)
                 if (res) {
@@ -172,6 +181,7 @@ const user = {//定义对象user
                 if (res) {
                     message.success('充值成功')
                     dispatch('getUserInfo')
+                    dispatch('getCreditChangeList')
                     commit('set_creditRechargeModalVisible' , false)
                 }
             } ,
@@ -233,6 +243,7 @@ const user = {//定义对象user
                 if (res) {
                     dispatch('getUserOrders')
                     dispatch('getUserInfo')
+                    dispatch('getCreditChangeList')
                     message.success('撤销成功')
                 } else {
                     message.error('撤销失败')

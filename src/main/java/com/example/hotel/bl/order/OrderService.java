@@ -79,7 +79,7 @@ public interface OrderService {
     ResponseVO changeAppealStatus(AppealVO appealVO);
 
     /**
-     * 改变订单状态
+     * 改变订单状态为已入住
      * @param orderid
      * @return
      */

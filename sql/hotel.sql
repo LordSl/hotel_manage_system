@@ -193,6 +193,29 @@ COMMIT;
 
 
 
+-- Table structure for table `CreditChange`
+DROP TABLE IF EXISTS `CreditChange`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CreditChange` (
+                                 `id` int(11) NOT NULL AUTO_INCREMENT,
+                                 `userId` int(11) DEFAULT NULL,
+                                 `timeChanged` varchar(50) DEFAULT NULL,
+                                 `reason` varchar(50) DEFAULT NULL,
+                                 `valueChanged` double(255,0) DEFAULT NULL,
+                                 PRIMARY KEY (`id`)
+) ENGINE=InnoDB  AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+--
+-- Dumping data for table `Appeal`
+--
+/*!40000 ALTER TABLE `CreditChange` DISABLE KEYS */;
+/*!40000 ALTER TABLE `CreditChange` ENABLE KEYS */;
+
+
+
+
+
 -- Table structure for table `Advertisement`
 DROP TABLE IF EXISTS `Advertisement`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;

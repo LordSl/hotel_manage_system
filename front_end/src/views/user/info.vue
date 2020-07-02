@@ -187,7 +187,36 @@
 
 
                 </a-form>
+
             </a-tab-pane>
+
+            <a-tab-pane tab="信用中心" key="5">
+                <a-form :form="form" style="margin-top: 30px">
+                    <div style="width: 100%; text-align: right; margin:30px 0">
+                        <a-button type="danger"  icon = "fire" ghost
+                                  v-if="userInfo.isWebVIP===0" @click="rechargeCredit">信用充值</a-button>
+                    </div>
+
+                    <a-table
+                            :columns="columns3"
+                            :dataSource="creditChangeList"
+                            bordered
+                    >
+                        <span slot="hotelImg" slot-scope="text">
+                            <img :src="text" style="height: 150px;width: 150px">
+                        </span>
+                        <span slot="action" slot-scope="record">
+                            <a-button type="primary" size="small" icon="bank" ghost @click="jumpToHotelDeteil(record)">前往酒店主页</a-button>
+                            <a-divider></a-divider>
+                            <a-button type="primary" size="small" icon="database" ghost @click="showHistoryDetailOfTheHotel(record)">查看酒店订单</a-button>
+
+                        </span>
+                    </a-table>
+
+
+                </a-form>
+            </a-tab-pane>
+
         </a-tabs>
         <CreditRechargeModal></CreditRechargeModal>
         <cancel-order-appeal-modal></cancel-order-appeal-modal>
@@ -320,6 +349,24 @@ const columns2 = [
         scopedSlots: { customRender: 'action' },
     },
 ];
+const columns3 = [
+    {
+        title:'时间',
+        dataIndex : 'time',
+        key : "time"
+    },
+    {
+        title: '变更原因',
+        dataIndex: 'reason',
+        key : "reason"
+    },
+    {
+        title: '变更大小',
+        dataIndex: 'value',
+        key : "value"
+    }
+];
+
 export default {
     name: 'info',
     data(){
@@ -329,6 +376,7 @@ export default {
             pagination: {},
             columns,
             columns2,
+            columns3,
             form: this.$form.createForm(this, { name: 'coordinated' }),
             appealed: false,
             detailReplyVisible:false,
@@ -365,7 +413,8 @@ export default {
             'userReplyList',
             'orderDetailCardVisible',
             'hotelListOfCurrentVIP',
-            'historyOrderList'
+            'historyOrderList',
+            'creditChangeList'
         ])
     },
     async mounted() {
@@ -374,6 +423,7 @@ export default {
         await this.getUserOrders()
         await this.getUserReplies()
         await this.getHotelListOfCurrentVIP()
+        await  this.getCreditChangeList()
     },
     methods: {
         ...mapActions([
@@ -386,7 +436,8 @@ export default {
             'addReply',
             'registerWebVIP',
             'autoUpdateOrderStatus',
-            'getHotelListOfCurrentVIP'
+            'getHotelListOfCurrentVIP',
+            'getCreditChangeList'
         ]),
         ...mapMutations([
             'set_creditRechargeModalVisible',

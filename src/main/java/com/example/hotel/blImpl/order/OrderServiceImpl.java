@@ -11,6 +11,7 @@ import com.example.hotel.po.Appeal;
 import com.example.hotel.po.Order;
 import com.example.hotel.po.User;
 import com.example.hotel.vo.*;
+import com.sun.org.apache.xpath.internal.operations.Or;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,6 +42,7 @@ public class OrderServiceImpl implements OrderService {
     AppealMapper appealMapper;
     @Autowired
     RoomService roomService;
+
     @Override
     public ResponseVO addOrder(OrderVO orderVO) {
         int reserveRoomNum = orderVO.getRoomNum();
@@ -164,6 +166,13 @@ public class OrderServiceImpl implements OrderService {
         int userId = order.getUserId();
         UserVO user = accountService.getUserInfo(userId);
         accountService.updateUserCredit(userId, user.getCredit() - 1.0 / 5 * order.getPrice());
+        //信用变更记录
+        CreditChangeVO creditChangeVO = new CreditChangeVO();
+        creditChangeVO.setReason("撤销订单扣除信用值     " + "订单编号: "+ order.getId());
+        creditChangeVO.setValue( - 1.0 / 5 * order.getPrice() );
+        creditChangeVO.setUserId(order.getUserId());
+        accountService.addCreditChangeRecord(creditChangeVO);
+        //信用变更记录
         return ResponseVO.buildSuccess(true);
     }
 
@@ -208,6 +217,13 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public ResponseVO checkInOrder(int orderid) {
         orderMapper.checkInOrder(orderid);
+        //更新信用信息
+        Order order = orderMapper.getOrderById(orderid);
+        CreditChangeVO creditChangeVO = new CreditChangeVO();
+        creditChangeVO.setUserId(order.getUserId());
+        creditChangeVO.setValue(order.getPrice());
+        creditChangeVO.setReason("成功入住，增加信用值" + "  订单编号：" + orderid);
+        accountService.addCreditChangeRecord(creditChangeVO);
         return ResponseVO.buildSuccess(true);
     }
 
@@ -223,6 +239,7 @@ public class OrderServiceImpl implements OrderService {
             String orderTime = order.getCheckInDate();
             if(currentTime.compareTo(orderTime) > 0){
                 orderMapper.setAbnormal(order.getId());
+
             }
         }
         return ResponseVO.buildSuccess(true);

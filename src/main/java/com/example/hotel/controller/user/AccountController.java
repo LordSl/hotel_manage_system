@@ -67,6 +67,9 @@ public class AccountController {
         return accountService.getWebVIP();
     }
 
-
+    @GetMapping("/{userId}/getCreditChange")
+    public ResponseVO getCreditChange(@PathVariable int userId){
+        return accountService.getCreditChangeListByUserId(userId);
+    }
 
 }

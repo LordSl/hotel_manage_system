@@ -79,4 +79,13 @@ public interface AccountService {
      * @return
      */
     ResponseVO getWebVIP();
+
+
+    /**
+     * 获取用户信用变更记录
+     * @return
+     */
+    ResponseVO getCreditChangeListByUserId(int userId);
+
+    ResponseVO addCreditChangeRecord(CreditChangeVO creditChangeVO);
 }
