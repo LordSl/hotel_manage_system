@@ -32,9 +32,7 @@
                             </div>
                             <div class="items" v-if="currentHotelInfo.hotelStar">
                                 <span class="label">星级:</span>
-                                <a-rate style="font-size: 15px" :value="4" disabled allowHalf v-if="currentHotelInfo.hotelStar==='Four'"/>
-                                <a-rate style="font-size: 15px" :value="3" disabled allowHalf v-if="currentHotelInfo.hotelStar==='Three'"/>
-                                <a-rate style="font-size: 15px" :value="5" disabled allowHalf v-if="currentHotelInfo.hotelStar==='Five'"/>
+                                <a-rate style="font-size: 15px" :value=currentHotelInfo.hotelStar disabled allowHalf/>
                             </div>
                             <div class="items" v-if="currentHotelInfo.description">
                                 <span class="label">酒店简介:</span>

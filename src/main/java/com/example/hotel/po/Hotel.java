@@ -24,10 +24,18 @@ public class Hotel {
      */
     private String bizRegion;
 
+    public Integer getHotelStar() {
+        return hotelStar;
+    }
+
+    public void setHotelStar(Integer hotelStar) {
+        this.hotelStar = hotelStar;
+    }
+
     /**
-     *
+     *酒店星级
      */
-    private String hotelStar;
+    private Integer hotelStar;
 
     /**
      * 酒店评分
@@ -119,13 +127,6 @@ public class Hotel {
         this.bizRegion = bizRegion;
     }
 
-    public String getHotelStar() {
-        return hotelStar;
-    }
-
-    public void setHotelStar(String hotelStar) {
-        this.hotelStar = hotelStar;
-    }
 
     public Double getRate() {
         return rate;

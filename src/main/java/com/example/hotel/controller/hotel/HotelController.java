@@ -99,7 +99,7 @@ public class HotelController {
     @GetMapping("/search")
     public ResponseVO searchHotel(@RequestParam String address,
                                           @RequestParam String bizRegion,
-                                          @RequestParam String hotelStar,
+                                          @RequestParam Integer hotelStar,
                                           @RequestParam String checkInDate,
                                           @RequestParam String checkOutDate,
                                           @RequestParam Integer roomNum,

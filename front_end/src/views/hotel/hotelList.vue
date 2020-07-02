@@ -38,9 +38,11 @@
                     { rules: [{ required: false, message: '请选择酒店星级' }] }]"
                         style="width:135px"
                 >
-                    <a-select-option value="Three">三星级</a-select-option>
-                    <a-select-option value="Four">四星级</a-select-option>
-                    <a-select-option value="Five">五星级</a-select-option>
+                    <a-select-option value="1">一星级</a-select-option>
+                    <a-select-option value="2">二星级</a-select-option>
+                    <a-select-option value="3">三星级</a-select-option>
+                    <a-select-option value="4">四星级</a-select-option>
+                    <a-select-option value="5">五星级</a-select-option>
                 </a-select>
             </a-form-item>
 
@@ -110,6 +112,49 @@
 
 
   <div class="hotelList" style="margin-top: 20px;clear: left">
+      <div>
+          <a-select default-value="1" style="width: 120px" v-model="rankType">
+              <a-select-option value="1">
+                  评分降序
+              </a-select-option>
+              <a-select-option value="2">
+                  评分升序
+              </a-select-option>
+              <a-select-option value="3">
+                  星级降序
+              </a-select-option>
+              <a-select-option value="4">
+                  星级升序
+              </a-select-option>
+              <a-select-option value="5">
+                  最低价格降序
+              </a-select-option>
+              <a-select-option value="6">
+                  最低价格升序
+              </a-select-option>
+          </a-select>
+
+          <a-radio-group v-model="rankType" default-value="1">
+              <a-radio-button value="1">
+                  评分降序
+              </a-radio-button>
+              <a-radio-button value="2">
+                  评分升序
+              </a-radio-button>
+              <a-radio-button value="3">
+                  星级降序
+              </a-radio-button>
+              <a-radio-button value="4">
+                  星级升序
+              </a-radio-button>
+              <a-radio-button value="5">
+                  最低价格降序
+              </a-radio-button>
+              <a-radio-button value="6">
+                  最低价格升序
+              </a-radio-button>
+          </a-radio-group>
+  </div>
     <a-layout>
         <a-layout-content id="htl">
                 <div class="twoLists">
@@ -119,7 +164,7 @@
                             :pagination="true"
                     >
                         <a-list-item slot="renderItem" slot-scope="item">
-                            <HotelCard :hotel="item" v-bind:key="item.index"  @click.native="jumpToDetails(item.id)"></HotelCard>
+                            <HotelCard :hotel="item" v-bind:key="item.id"  @click.native="jumpToDetails(item.id)"></HotelCard>
                         </a-list-item>
                     </a-list>
                 </div>
@@ -565,7 +610,8 @@ export default {
         roomNum:'',
         hotelStar:'',
         size:'small',
-        haveReserved:false
+        haveReserved:false,
+        rankType:'1'
     }
   },
   async mounted() {
@@ -594,7 +640,8 @@ export default {
     ...mapActions([
       'getHotelList',
         'getAdvertisementList',
-        'retrieveHotel'
+        'retrieveHotel',
+        'rankHotelByValue'
     ]),
       disabledDate(current) {
           // Can not select days before today and today
@@ -603,14 +650,6 @@ export default {
       filter(inputValue, path) {
           return path.some(option => option.label.toLowerCase().indexOf(inputValue.toLowerCase()) > -1);
       },
-    // pageChange(page, pageSize) {
-    //   const data = {
-    //     pageNo: page - 1
-    //   }
-    //   this.set_hotelListParams(data)
-    //   this.set_hotelListLoading(true)
-    //   this.getHotelList()
-    // },
     jumpToDetails(id){
       this.$router.push({ name: 'hotelDetail', params: { hotelId: id }})
     },
@@ -626,7 +665,7 @@ export default {
             this.roomNum=Number(this.form.getFieldValue('roomNum'))
         }
         if(this.form.getFieldValue('hotelStar')!=undefined){
-            this.hotelStar=this.form.getFieldValue('hotelStar')
+            this.hotelStar=Number(this.form.getFieldValue('hotelStar'))
         }
         if(this.selectProvince.length!=0){
             const params = {
@@ -658,7 +697,7 @@ export default {
               this.roomNum=Number(this.form.getFieldValue('roomNum'))
           }
           if(this.form.getFieldValue('hotelStar')!=undefined){
-              this.hotelStar=this.form.getFieldValue('hotelStar')
+              this.hotelStar=Number(this.form.getFieldValue('hotelStar'))
           }
           if(this.selectProvince.length!=0){
               const params = {
@@ -706,6 +745,9 @@ export default {
               })
               this.getHotelList()
           }
+      },
+      rankType(val){
+          this.rankHotelByValue(val)
       }
   }
 }

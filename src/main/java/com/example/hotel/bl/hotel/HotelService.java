@@ -64,7 +64,7 @@ public interface HotelService {
      */
     List<HotelVO> retrieveHotelByBizRegion(String address,
                                            String bizRegion,
-                                           String hotelStar,
+                                           Integer hotelStar,
                                            String checkInDate,
                                            String checkOutDate,
                                            Integer roomNum,

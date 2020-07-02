@@ -28,7 +28,7 @@
                         </div>
                         <div class="items">
                             <span class="label">星级:</span>
-                            <a-rate style="font-size: 15px" :value="currentHotelInfo.rate" disabled allowHalf/>
+                            <a-rate style="font-size: 15px" :value="currentHotelInfo.hotelStar" disabled allowHalf/>
                         </div>
                         <div class="items">
                             <span class="label">酒店简介:</span>
@@ -135,6 +135,13 @@
                 <a-table :columns="columns1" :dataSource="hotelList" bordered
                          :pagination="true"
                 >
+                    <span slot="hotelStar" slot-scope="text">
+                        <a-tag color="red" v-if="text==5">五星级</a-tag>
+                        <a-tag color="orange" v-if="text==4">四星级</a-tag>
+                        <a-tag color="cyan" v-if="text==3">三星级</a-tag>
+                        <a-tag color="purple" v-if="text==2">二星级</a-tag>
+                        <a-tag color="blue" v-if="text==1">一星级</a-tag>
+                    </span>
                     <span slot="action" slot-scope="record">
                         <a-button type="primary" size="small" @click="addRoom(record)">录入房间</a-button>
                         <a-divider type="vertical"></a-divider>
@@ -194,7 +201,8 @@ const columns1 = [
     },
     {
         title: '酒店星级',
-        dataIndex: 'hotelStar'
+        dataIndex: 'hotelStar',
+        scopedSlots: { customRender: 'hotelStar' },
     },
     {
         title: '评分',

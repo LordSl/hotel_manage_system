@@ -33,9 +33,12 @@
                     { rules: [{ required: true, message: '请选择酒店星级' }] }]"
                         @change="changeStar"
                 >
-                    <a-select-option value="Three">三星级</a-select-option>
-                    <a-select-option value="Four">四星级</a-select-option>
-                    <a-select-option value="Five">五星级</a-select-option>
+
+                    <a-select-option value="1">一星级</a-select-option>
+                    <a-select-option value="2">二星级</a-select-option>
+                    <a-select-option value="3">三星级</a-select-option>
+                    <a-select-option value="4">四星级</a-select-option>
+                    <a-select-option value="5">五星级</a-select-option>
                 </a-select>
             </a-form-item>
             <a-form-item label="酒店评分" v-bind="formItemLayout">
@@ -130,7 +133,7 @@
                             bizRegion:this.form.getFieldValue('bizRegion'),
                             address: this.form.getFieldValue('address'),
                             phoneNum: this.form.getFieldValue('phoneNumber'),
-                            hotelStar: this.form.getFieldValue('hotelStar'),
+                            hotelStar: Number(this.form.getFieldValue('hotelStar')),
                             longitude:Number(this.form.getFieldValue('longitude')),
                             latitude:Number(this.form.getFieldValue('latitude')),
                             rate:Number(this.form.getFieldValue('score')),

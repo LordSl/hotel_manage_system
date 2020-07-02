@@ -13,7 +13,7 @@ public class HotelVO {
     private String name;
     private String address;
     private String bizRegion;
-    private String hotelStar;
+    private Integer hotelStar;
     private Double rate;
     private String description;
     private String phoneNum;
@@ -113,11 +113,11 @@ public class HotelVO {
         this.rate = rate;
     }
 
-    public String getHotelStar() {
+    public Integer getHotelStar() {
         return hotelStar;
     }
 
-    public void setHotelStar(String hotelStar) {
+    public void setHotelStar(Integer hotelStar) {
         this.hotelStar = hotelStar;
     }
 

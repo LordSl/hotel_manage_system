@@ -12,7 +12,7 @@
     </delete>
 
     <select id="selectAllHotel" resultMap="Hotel">
-        select * from Hotel
+        select * from Hotel order by rate desc
     </select>
     <select id="selectById" resultMap="Hotel">
         select * from Hotel where id=#{id}

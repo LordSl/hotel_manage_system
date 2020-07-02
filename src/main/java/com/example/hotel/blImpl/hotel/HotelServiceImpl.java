@@ -49,10 +49,7 @@ public class HotelServiceImpl implements HotelService {
     private CommentMapper commentMapper;
     @Override
     public ResponseVO addHotel(HotelVO hotelVO) {
-//        User manager = accountService.getUserInfo(hotelVO.getManagerId());
-//        if(manager == null || !manager.getUserType().equals(UserType.Manager)){
-//            throw new ServiceException("管理员不存在或者无权限！创建酒店失败！");
-//        }
+
         User manager=accountMapper.getAccountByName(hotelVO.getManagerEmail());
         List<Hotel> hotelList=hotelMapper.selectAllHotel();
         if(manager==null||!manager.getUserType().equals(UserType.HotelManager)){
@@ -123,7 +120,7 @@ public class HotelServiceImpl implements HotelService {
     }
 
     @Override
-    public List<HotelVO> retrieveHotelByBizRegion(String address, String  bizRegion, String hotelStar, String checkInDate, String checkOutDate, Integer roomNum, String key,Boolean haveReserved,
+    public List<HotelVO> retrieveHotelByBizRegion(String address, String  bizRegion, Integer hotelStar, String checkInDate, String checkOutDate, Integer roomNum, String key,Boolean haveReserved,
                                                   Integer userId) {
         List<Hotel> hotels=hotelMapper.selectAllHotel();
         if(haveReserved&&userId>0){
@@ -158,13 +155,9 @@ public class HotelServiceImpl implements HotelService {
                 }
             }
         }
-        if(hotelStar!=null&&hotelStar.length()>0){
-            Map<String,Integer> starMap=new HashMap<>();
-            starMap.put("Three",3);
-            starMap.put("Four",4);
-            starMap.put("Five",5);
+        if(hotelStar!=null&&hotelStar>0){
             for(int i=0;i<res.size();i++){
-                if(starMap.get(res.get(i).getHotelStar())<starMap.get(hotelStar)){
+                if(res.get(i).getHotelStar()<hotelStar){
                     res.remove(i);
                     i--;
                 }
@@ -178,6 +171,7 @@ public class HotelServiceImpl implements HotelService {
                 }
             }
         }
+
         return res.stream().map(r->{
             HotelVO hotelVO=new HotelVO();
             BeanUtils.copyProperties(r,hotelVO);

@@ -169,6 +169,88 @@ const hotel = {
     },
 
     actions: {
+        rankHotelByValue:async({commit, state,dispatch},data) => {
+            console.log(data)
+            switch (data) {
+                case '1': dispatch('rankHotelByScoreDesc')
+                    break;
+                case '2': dispatch('rankHotelByScoreAsc')
+                    break;
+                case '3': dispatch('rankHotelByStarDesc')
+                    break;
+                case '4': dispatch('rankHotelByStarAsc')
+                    break;
+                case '5': dispatch('rankHotelByPriceDesc')
+                    break;
+                case '6': dispatch('rankHotelByPriceAsc')
+                    break;
+            }
+        },
+        rankHotelByScoreDesc:async({commit, state}) => {
+            console.log('rankHotelByScoreDesc')
+            function sortH(a,b)
+            {
+                return b.rate - a.rate
+            }
+            commit('set_hotelList',state.hotelList.sort(sortH))
+        },
+        rankHotelByScoreAsc:async({commit, state}) => {
+            function sortH(a,b)
+            {
+                return a.rate - b.rate
+            }
+            commit('set_hotelList',state.hotelList.sort(sortH))
+        },
+        rankHotelByStarDesc:async({commit, state}) => {
+            function sortH(a,b)
+            {
+                return b.hotelStar - a.hotelStar
+            }
+            commit('set_hotelList',state.hotelList.sort(sortH))
+        },
+        rankHotelByStarAsc:async({commit, state}) => {
+            function sortH(a,b)
+            {
+                return a.hotelStar - b.hotelStar
+            }
+            commit('set_hotelList',state.hotelList.sort(sortH))
+        },
+        rankHotelByPriceDesc:async({commit, state}) => {
+            function sortH(a,b)
+            {
+                console.log(state.hotelList)
+                if(a.rooms==null||a.rooms.length==0){
+                    return 1;
+                }else if(b.rooms==null||b.rooms.length==0){
+                    return -1;
+                }
+                let min_a=a.rooms[0].price;
+                a.rooms.forEach(item=>(min_a=(min_a<=item.price?min_a:item.price)))
+                let min_b=b.rooms[0].price;
+                b.rooms.forEach(item=>(min_b=(min_b<=item.price?min_b:item.price)))
+                console.log("min_a"+min_a)
+                console.log("min_b"+min_b)
+                return min_b - min_a
+            }
+
+            commit('set_hotelList',state.hotelList.sort(sortH))
+        },
+        rankHotelByPriceAsc:async({commit, state}) => {
+            function sortH(a,b)
+            {
+                if(a.rooms==null||a.rooms.length==0){
+                    return -1;
+                }else if(b.rooms==null||b.rooms.length==0){
+                    return 1;
+                }
+                let min_a=a.rooms[0].price;
+                a.rooms.forEach(item=>(min_a=(min_a<=item.price?min_a:item.price)))
+                let min_b=b.rooms[0].price;
+                b.rooms.forEach(item=>(min_b=(min_b<=item.price?min_b:item.price)))
+                return min_a - min_b
+            }
+            commit('set_hotelList',state.hotelList.sort(sortH))
+        },
         getHotelRoom:async({commit, state},params) => {
             const res = await getHotelRoomAPI(params)
             const data={

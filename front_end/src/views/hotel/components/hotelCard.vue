@@ -28,9 +28,7 @@
           </div>
           <div class="items" >
             <span class="label">星级:</span>
-            <a-rate style="font-size: 15px" :value="4" disabled allowHalf v-if="hotel.hotelStar==='Four'"/>
-            <a-rate style="font-size: 15px" :value="3" disabled allowHalf v-if="hotel.hotelStar==='Three'"/>
-            <a-rate style="font-size: 15px" :value="5" disabled allowHalf v-if="hotel.hotelStar==='Five'"/>
+            <a-rate style="font-size: 15px" :value=hotel.hotelStar disabled allowHalf/>
           </div>
         </div>
       </div>
@@ -58,7 +56,6 @@ export default {
 
   async mounted() {
 
-    // console.log(this.hotel)
     this.getLeastMoney()
   },
   data() {

@@ -1,6 +1,6 @@
 <template>
 <div class="room-list">
-    <div class="filter">
+    <div class="filter" style="margin-bottom: 20px">
         <a-range-picker
                 format="YYYY-MM-DD"
                 v-model='date'
@@ -135,6 +135,13 @@ export default {
                 checkOutDate: moment(this.date[1]).format('YYYY-MM-DD'),
             }
             this.getHotelRoom(params)
+        }
+    },
+    watch: {
+        orderModalVisible(val){
+            if(val==false){
+                this.getRoom()
+            }
         }
     }
 }
