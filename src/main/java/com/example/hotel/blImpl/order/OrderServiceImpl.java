@@ -11,7 +11,6 @@ import com.example.hotel.po.Appeal;
 import com.example.hotel.po.Order;
 import com.example.hotel.po.User;
 import com.example.hotel.vo.*;
-import com.sun.org.apache.xpath.internal.operations.Or;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
