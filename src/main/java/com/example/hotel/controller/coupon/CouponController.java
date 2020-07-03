@@ -49,7 +49,9 @@ public class CouponController {
                                            @RequestParam Double orderPrice,
                                            @RequestParam Integer roomNum,
                                            @RequestParam String checkIn,
-                                           @RequestParam String checkOut) {
+                                           @RequestParam String checkOut,
+                                           @RequestParam String createDate
+                                           ) {
         OrderVO requestOrderVO = new OrderVO();
         requestOrderVO.setUserId(userId);
         requestOrderVO.setHotelId(hotelId);
@@ -57,6 +59,7 @@ public class CouponController {
         requestOrderVO.setRoomNum(roomNum);
         requestOrderVO.setCheckInDate(checkIn);
         requestOrderVO.setCheckOutDate(checkOut);
+        requestOrderVO.setCreateDate(createDate);
         return ResponseVO.buildSuccess(couponService.getMatchOrderCoupon(requestOrderVO));
     }
 

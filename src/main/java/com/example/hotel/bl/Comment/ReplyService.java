@@ -1,11 +1,13 @@
 package com.example.hotel.bl.Comment;
 
-import com.example.hotel.po.Reply;
 import com.example.hotel.vo.ReplyVO;
 import com.example.hotel.vo.ResponseVO;
 
 import java.util.List;
 
+/**
+ * 回复Service
+ */
 public interface ReplyService {
 
     /**
@@ -25,7 +27,7 @@ public interface ReplyService {
      * 增加点赞数
      * @param id
      */
-    void updateReplyLike(Integer id,Integer num);
+    ResponseVO updateReplyLike(Integer id,Integer num);
 
     /**
      * 返回评论@的消息

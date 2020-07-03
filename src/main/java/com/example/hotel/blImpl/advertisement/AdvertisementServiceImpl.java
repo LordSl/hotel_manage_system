@@ -21,6 +21,8 @@ import java.util.List;
 public class AdvertisementServiceImpl implements AdvertisementService {
 
     @Autowired
+    private AdvertisementService advertisementService;
+    @Autowired
     private AdvertisementMapper advertisementMapper;
     @Autowired
     private HotelMapper hotelMapper;
@@ -29,29 +31,41 @@ public class AdvertisementServiceImpl implements AdvertisementService {
 
 
     @Override
-    public List<AdvertisementVO> getAdvertisementList() {
-        List<AdvertisementVO>results = new ArrayList<>();
-        List<Advertisement>got = advertisementMapper.getAdvertisementList();
-        for(int i = 0; i< got.size();i++){
-            AdvertisementVO advertisementVO = new AdvertisementVO();
-            advertisementVO.setAdId(got.get(i).getAdId());
-            advertisementVO.setHotelId(got.get(i).getHotelId());
-            advertisementVO.setAdImgUrl(got.get(i).getAdImgUrl());
-            HotelVO hotelVO = hotelService.getHotelById(advertisementVO.getHotelId());
-            advertisementVO.setHotel(hotelVO);
-            results.add(advertisementVO);
+    public ResponseVO getAdvertisementList() {
+        try {
+            List<AdvertisementVO> results = new ArrayList<>();
+            List<Advertisement>got = advertisementMapper.getAdvertisementList();
+            for(int i = 0; i< got.size();i++){
+                AdvertisementVO advertisementVO = new AdvertisementVO();
+                advertisementVO.setAdId(got.get(i).getAdId());
+                advertisementVO.setHotelId(got.get(i).getHotelId());
+                advertisementVO.setAdImgUrl(got.get(i).getAdImgUrl());
+                HotelVO hotelVO = hotelService.getHotelById(advertisementVO.getHotelId());
+                advertisementVO.setHotel(hotelVO);
+                results.add(advertisementVO);
+            }
+            return ResponseVO.buildSuccess(results);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return ResponseVO.buildFailure("获取广告失败");
         }
-        return results;
+
     }
 
     @Override
     public ResponseVO deleteAD(int id) {
-        List<AdvertisementVO>got = getAdvertisementList();
+        List<AdvertisementVO>got = (List<AdvertisementVO>)advertisementService.getAdvertisementList().getContent();
         if(got.size() == 1){
             return ResponseVO.buildFailure("至少有一张广告");
         }
-        advertisementMapper.deleteAD(id);
-        return ResponseVO.buildSuccess(true);
+        try {
+            advertisementMapper.deleteAD(id);
+            return ResponseVO.buildSuccess(true);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return ResponseVO.buildFailure("获取广告失败");
+        }
+
     }
 
     @Override
@@ -67,7 +81,13 @@ public class AdvertisementServiceImpl implements AdvertisementService {
 
     @Override
     public ResponseVO bindADHotel(int adId, int hotelId) {
-        advertisementMapper.bindADHotel(adId, hotelId);
-        return ResponseVO.buildSuccess(true);
+        try {
+            advertisementMapper.bindADHotel(adId, hotelId);
+            return ResponseVO.buildSuccess(true);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return ResponseVO.buildFailure("绑定酒店失败");
+        }
+
     }
 }

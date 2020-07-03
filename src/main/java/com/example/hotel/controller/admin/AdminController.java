@@ -37,13 +37,13 @@ public class AdminController {
 
     @PostMapping("/getAllManagers")
     public ResponseVO getAllManagers(){
-        return ResponseVO.buildSuccess(adminService.getAllManagers());
+        return adminService.getAllManagers();
     }
 
     @PostMapping("/uploadADAPI")
     public ResponseVO iploadAD(@RequestParam String imgUrl){
-        adminService.uploadAD(imgUrl);
-        return ResponseVO.buildSuccess(true);
+
+        return adminService.uploadAD(imgUrl);
     }
 
 

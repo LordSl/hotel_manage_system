@@ -1,17 +1,13 @@
 package com.example.hotel.bl.order;
 
-import com.example.hotel.po.Order;
 import com.example.hotel.vo.AppealVO;
 import com.example.hotel.vo.OrderVO;
 import com.example.hotel.vo.ResponseVO;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-
 import java.util.List;
 
+
 /**
- * @Author: chenyizong
- * @Date: 2020-03-04
+ * 订单Service层
  */
 public interface OrderService {
 

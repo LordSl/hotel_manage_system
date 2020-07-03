@@ -10,6 +10,7 @@ import com.example.hotel.po.User;
 import com.example.hotel.po.VIPHotel;
 import com.example.hotel.vo.HotelVO;
 import com.example.hotel.vo.OrderVO;
+import com.example.hotel.vo.ResponseVO;
 import com.example.hotel.vo.UserVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +32,15 @@ public class VipHotelServiceImpl implements VipHotelService {
 
 
     @Override
-    public void registerAsHotelVIP(int userId, int hotelId) {
-        vipHotelMapper.registerAsHotelVIP(userId, hotelId);
+    public ResponseVO registerAsHotelVIP(int userId, int hotelId) {
+        try {
+            vipHotelMapper.registerAsHotelVIP(userId, hotelId);
+            return ResponseVO.buildSuccess(true);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return ResponseVO.buildFailure("注册酒店会员失败");
+        }
+
     }
 
     @Override
@@ -88,7 +96,14 @@ public class VipHotelServiceImpl implements VipHotelService {
     }
 
     @Override
-    public void deleteVIPHotel(int userId, int hotelId) {
-        vipHotelMapper.deleteVIPHotel(userId,hotelId);
+    public ResponseVO deleteVIPHotel(int userId, int hotelId) {
+        try {
+            vipHotelMapper.deleteVIPHotel(userId,hotelId);
+            return ResponseVO.buildSuccess(true);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return ResponseVO.buildFailure("删除酒店会员失败");
+        }
+
     }
 }

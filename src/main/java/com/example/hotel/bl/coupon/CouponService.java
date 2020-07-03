@@ -5,6 +5,9 @@ import com.example.hotel.vo.*;
 
 import java.util.List;
 
+/**
+ * 优惠Service
+ */
 public interface CouponService {
     /**
      * 返回某一订单可用的优惠策略列表

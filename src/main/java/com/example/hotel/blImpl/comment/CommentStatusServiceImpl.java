@@ -53,6 +53,13 @@ public class CommentStatusServiceImpl implements CommentStatusService {
 
     @Override
     public ResponseVO getCommentStatus() {
-        return ResponseVO.buildSuccess(statusMapper.getCommentStatus());
+        try {
+            return ResponseVO.buildSuccess(statusMapper.getCommentStatus());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return ResponseVO.buildFailure("获取广告失败");
+        }
+
+
     }
 }

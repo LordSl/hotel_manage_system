@@ -277,7 +277,7 @@ const columns = [
     {
         title: '房型',
         dataIndex: 'roomType',
-        scopedSlots: { customRender: 'roomType' }
+
     },
     {
         title: '入住时间',

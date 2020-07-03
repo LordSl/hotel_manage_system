@@ -32,10 +32,7 @@ public class HotelController {
 
     @PostMapping("/updateHotel")
     public ResponseVO updateHotel(@RequestBody HotelVO hotelVO) throws ServiceException {
-
-        hotelService.updateHotelInfo(hotelVO);
-        System.out.println(hotelVO.getName()+" "+hotelVO.getId().toString());
-        return ResponseVO.buildSuccess(true);
+        return hotelService.updateHotelInfo(hotelVO);
     }
 
     @GetMapping("/all")
@@ -45,20 +42,19 @@ public class HotelController {
 
     @PostMapping("/roomInfo")
     public ResponseVO addRoomInfo(@RequestBody RoomVO hotelRoom) {
-        roomService.insertRoomInfo(hotelRoom);
-        return ResponseVO.buildSuccess(true);
+
+        return roomService.insertRoomInfo(hotelRoom);
     }
 
     @PostMapping("/updateRoom")
     public ResponseVO updateRoomInfo(@RequestBody RoomVO hotelRoom) {
-        roomService.updateRoom(hotelRoom);
-        return ResponseVO.buildSuccess(true);
+        return roomService.updateRoom(hotelRoom);
     }
 
     @GetMapping("/{roomId}/deleteRoom")
     public ResponseVO deleteRoom(@PathVariable Integer roomId) {
-        roomService.deleteRoom(roomId);
-        return ResponseVO.buildSuccess(true);
+
+        return roomService.deleteRoom(roomId);
     }
 
     @GetMapping("/addRoomNum")

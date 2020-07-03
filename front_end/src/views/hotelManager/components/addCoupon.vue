@@ -39,7 +39,7 @@
                 <a-range-picker
                         :disabled-date="disabledDate"
                         show-time
-                        format="YYYY-MM-DD"
+                        format="YYYY-MM-DD hh:mm:ss"
                         v-decorator="[
                         'date',
                         {

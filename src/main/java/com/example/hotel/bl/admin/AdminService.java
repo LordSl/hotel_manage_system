@@ -1,13 +1,9 @@
 package com.example.hotel.bl.admin;
 
-import com.example.hotel.po.User;
 import com.example.hotel.vo.*;
-
-import java.util.List;
-
+Service
 /**
- * @Author: chenyizong
- * @Date: 2020-03-04
+ * 用户
  */
 public interface AdminService {
 
@@ -29,16 +25,16 @@ public interface AdminService {
      * 删除用户
      * @param userId
      */
-    void deleteManager(Integer userId);
+    ResponseVO deleteManager(Integer userId);
     /**
      * 获得所有酒店管理人员信息
      * @return
      */
-    List<UserVO> getAllManagers();
+    ResponseVO getAllManagers();
 
     /**
      * 上传广告图片
      * @param imgUrl
      */
-    void uploadAD(String imgUrl);
+    ResponseVO uploadAD(String imgUrl);
 }

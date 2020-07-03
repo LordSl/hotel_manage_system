@@ -149,11 +149,18 @@
             ...mapActions([
                 'getHotelById',
                 'getHotelList',
-                'getCouponListForDisplay'
+                'getCouponListForDisplay',
+                'judgeVipCouple',
+                'judgeStateOfHotel',
+                'getPrevOrder',
+
             ]),
             jumpToDetails (id) {
                 this.set_currentHotelId(id)
                 this.getCouponListForDisplay(id)
+                this.judgeVipCouple({userId:this.currentHotelInfo.id, hotelId:id})
+                this.judgeStateOfHotel({userId:this.currentHotelInfo.id, hotelId:id})
+                this.getPrevOrder({userId:this.currentHotelInfo.id, hotelId:id})
                 this.$router.push({ name: 'hotelDetail', params: { hotelId: id }})
                 this.getHotelById()
             },

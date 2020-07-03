@@ -21,12 +21,19 @@ public class ReplyServiceImpl implements ReplyService {
     public ResponseVO insertReply(ReplyVO replyVO) {
         Reply reply=new Reply();
         BeanUtils.copyProperties(replyVO,reply);
-        int effectNum=replyMapper.insertReply(reply);
-        if(effectNum>0){
-            return ResponseVO.buildSuccess("回复成功");
-        }else{
+
+        try {
+            int effectNum=replyMapper.insertReply(reply);
+            if(effectNum>0){
+                return ResponseVO.buildSuccess("回复成功");
+            }else{
+                return ResponseVO.buildFailure("回复失败");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
             return ResponseVO.buildFailure("回复失败");
         }
+
     }
 
     @Override
@@ -42,8 +49,15 @@ public class ReplyServiceImpl implements ReplyService {
     }
 
     @Override
-    public void updateReplyLike(Integer id,Integer num) {
-        replyMapper.updateReplyLikes(id,num);
+    public ResponseVO updateReplyLike(Integer id,Integer num) {
+        try {
+            replyMapper.updateReplyLikes(id,num);
+            return ResponseVO.buildSuccess(true);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return ResponseVO.buildFailure("点赞失败");
+        }
+
     }
 
     @Override
@@ -60,11 +74,17 @@ public class ReplyServiceImpl implements ReplyService {
 
     @Override
     public ResponseVO deleteReplyById(Integer id) {
-        int effectNum=replyMapper.deleteReply(id);
-        if(effectNum>0){
-            return ResponseVO.buildSuccess("删除成功");
-        }else{
-            return ResponseVO.buildFailure("删除失败");
+
+        try {
+            int effectNum=replyMapper.deleteReply(id);
+            if(effectNum>0){
+                return ResponseVO.buildSuccess("删除成功");
+            }else{
+                return ResponseVO.buildFailure("删除失败");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return ResponseVO.buildFailure("删除回复失败");
         }
     }
 }

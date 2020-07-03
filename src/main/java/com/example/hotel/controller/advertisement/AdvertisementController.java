@@ -15,7 +15,7 @@ public class AdvertisementController {
 
     @GetMapping("/getAdList")
     public ResponseVO getAdList() {
-        return ResponseVO.buildSuccess(advertisementService.getAdvertisementList());
+        return advertisementService.getAdvertisementList();
     }
 
     @GetMapping("/{id}/deleteAD")
@@ -25,13 +25,13 @@ public class AdvertisementController {
 
     @GetMapping("/addADImg")
     public ResponseVO addADImg(@RequestParam String imgUrl){
-        advertisementService.addADImg(imgUrl);
-        return ResponseVO.buildSuccess(true);
+
+        return advertisementService.addADImg(imgUrl);
     }
 
     @GetMapping("/bindADHotel")
     public ResponseVO bindADHotel(@RequestParam int adId, @RequestParam int hotelId){
-        advertisementService.bindADHotel(adId, hotelId);
-        return ResponseVO.buildSuccess(true);
+
+        return advertisementService.bindADHotel(adId, hotelId);
     }
 }

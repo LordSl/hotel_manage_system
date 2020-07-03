@@ -25,6 +25,9 @@ import java.util.Random;
 public class AccountServiceImpl implements AccountService {
     private final static String ACCOUNT_EXIST = "账号已存在";
     private final static String UPDATE_ERROR = "修改失败";
+
+    @Autowired
+    private AccountService accountService;
     @Autowired
     private AccountMapper accountMapper;
     @Autowired
@@ -52,8 +55,6 @@ public class AccountServiceImpl implements AccountService {
         if (null == user || !user.getPassword().equals(userForm.getPassword())) {
             return null;
         }
-        System.out.println(user.getEmail());
-        System.out.println(user.getPassword());
         UserVO userVO=new UserVO();
         BeanUtils.copyProperties(user,userVO);
         return userVO;
@@ -92,7 +93,9 @@ public class AccountServiceImpl implements AccountService {
             creditChange.setUserId(id);
             creditChange.setReason("用户通过申诉或完成充值， 信用值增加");
             creditChange.setValue(amount);
-            this.addCreditChangeRecord(creditChange);
+            CreditChangeVO creditChangeVO=new CreditChangeVO();
+            BeanUtils.copyProperties(creditChange,creditChangeVO);
+            accountService.addCreditChangeRecord(creditChangeVO);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return ResponseVO.buildFailure(UPDATE_ERROR);
@@ -102,8 +105,14 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public ResponseVO updateUserCredit(int id, double credit) {
-        accountMapper.updateAccountCredit(id,credit);
-        return ResponseVO.buildSuccess(true);
+        try {
+            accountMapper.updateAccountCredit(id,credit);
+            return ResponseVO.buildSuccess(true);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return ResponseVO.buildFailure("充值信用失败");
+        }
+
     }
 
     @Override
@@ -125,8 +134,14 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public ResponseVO getWebVIP() {
-        List<User>vip = accountMapper.getWebVIP();
-        return ResponseVO.buildSuccess(vip);
+        try {
+            List<User>vip = accountMapper.getWebVIP();
+            return ResponseVO.buildSuccess(vip);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return ResponseVO.buildFailure("获取网站vip失败");
+        }
+
     }
 
     @Override
@@ -148,15 +163,17 @@ public class AccountServiceImpl implements AccountService {
         creditChange.setUserId(creditChangeVO.getUserId());
         creditChange.setReason(creditChangeVO.getReason());
         creditChange.setValue(creditChangeVO.getValue());
-        this.addCreditChangeRecord(creditChange);
-        return ResponseVO.buildSuccess(true);
-    }
-
-    public void addCreditChangeRecord(CreditChange creditChange) {
         SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd  HH:mm:ss ");
         Date date = new Date(System.currentTimeMillis());
         creditChange.setTime(formatter.format(date));
-        creditChangeMapper.addCreditChangeRecord(creditChange);
-        ResponseVO.buildSuccess(true);
+        try {
+            creditChangeMapper.addCreditChangeRecord(creditChange);
+            return ResponseVO.buildSuccess(true);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return ResponseVO.buildFailure("增加信用更改记录失败");
+        }
+
     }
+
 }

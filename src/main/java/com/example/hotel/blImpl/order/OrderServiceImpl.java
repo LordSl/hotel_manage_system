@@ -55,19 +55,12 @@ public class OrderServiceImpl implements OrderService {
             //判断信用值能不能预定，小于0就不能预定
             double credit = user.getCredit();
             if(credit<0) return ResponseVO.buildFailure(RESERVE_ERROR_CREDIT);
-            //
-//            SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
-//            Date date = new Date(System.currentTimeMillis());
-//            String curdate = sf.format(date);
-//            orderVO.setCreateDate(curdate);
             orderVO.setOrderState("已预订");
             orderVO.setClientName(user.getUserName());
             orderVO.setPhoneNumber(user.getPhoneNumber());
             Order order = new Order();
             BeanUtils.copyProperties(orderVO,order);
             orderMapper.addOrder(order);
-//            hotelService.updateRoomInfo(orderVO.getHotelId(),orderVO.getRoomType(), curNum-orderVO.getRoomNum());
-            //房间总数就不变了，具体剩余数量待后期实现
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return ResponseVO.buildFailure(RESERVE_ERROR);
@@ -77,7 +70,13 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public ResponseVO changeAppealStatus(AppealVO appealVO) {
-        appealMapper.setAppealStatus(appealVO.getOrderId(), appealVO.getAppealStatus());
+        try {
+            appealMapper.setAppealStatus(appealVO.getOrderId(), appealVO.getAppealStatus());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return ResponseVO.buildFailure("改变申诉状态失败");
+        }
+
 
         return ResponseVO.buildSuccess(true);
     }
@@ -153,10 +152,8 @@ public class OrderServiceImpl implements OrderService {
     public ResponseVO annulOrder(int orderid) {
         //取消订单逻辑的具体实现（注意可能有和别的业务类之间的交互）
         Order order=orderMapper.getOrderById(orderid);
-//        int curNum = hotelService.getRoomCurNum(order.getHotelId(),order.getRoomType());
         try {
             orderMapper.annulOrder(orderid);
-//            hotelService.updateRoomInfo(order.getHotelId(),order.getRoomType(),order.getRoomNum()+curNum);
         }catch (Exception e){
             System.out.println(e.getMessage());
             return ResponseVO.buildFailure(DELETE_ERROR);
@@ -178,8 +175,14 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public ResponseVO deleteOrder(int orderid) {
-        orderMapper.deleteOrder(orderid);
-        orderMapper.deleteAppeal(orderid);
+
+        try {
+            orderMapper.deleteOrder(orderid);
+            orderMapper.deleteAppeal(orderid);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return ResponseVO.buildFailure("删除订单失败");
+        }
         return ResponseVO.buildSuccess(true);
     }
 
@@ -210,12 +213,19 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public ResponseVO getAppealMessage(int orderid) {
-        String message = appealMapper.getAppealMessageById(orderid).getAppealMessage();
-        return ResponseVO.buildSuccess(message);
+        try {
+            String message = appealMapper.getAppealMessageById(orderid).getAppealMessage();
+            return ResponseVO.buildSuccess(message);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return ResponseVO.buildFailure("获取申诉信息失败");
+        }
+
     }
 
     @Override
     public ResponseVO checkInOrder(int orderid) {
+        try {
         orderMapper.checkInOrder(orderid);
         //更新信用信息
         Order order = orderMapper.getOrderById(orderid);
@@ -225,6 +235,11 @@ public class OrderServiceImpl implements OrderService {
         creditChangeVO.setReason("成功入住，增加信用值" + "  订单编号：" + orderid);
         accountService.addCreditChangeRecord(creditChangeVO);
         return ResponseVO.buildSuccess(true);
+    } catch (Exception e) {
+        System.out.println(e.getMessage());
+        return ResponseVO.buildFailure("客户入住失败");
+    }
+
     }
 
     @Override
@@ -239,7 +254,6 @@ public class OrderServiceImpl implements OrderService {
             String orderTime = order.getCheckInDate();
             if(currentTime.compareTo(orderTime) > 0){
                 orderMapper.setAbnormal(order.getId());
-
             }
         }
         return ResponseVO.buildSuccess(true);

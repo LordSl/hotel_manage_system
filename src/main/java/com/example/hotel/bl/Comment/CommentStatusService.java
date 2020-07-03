@@ -1,9 +1,12 @@
 package com.example.hotel.bl.Comment;
 
-import com.example.hotel.po.CommentStatus;
+
 import com.example.hotel.vo.CommentStatusVO;
 import com.example.hotel.vo.ResponseVO;
 
+/**
+ * 点赞状态的Service层
+ */
 public interface CommentStatusService {
 
     /**

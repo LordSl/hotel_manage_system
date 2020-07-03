@@ -22,7 +22,7 @@ public class TargetMoneyCouponStrategyImpl implements CouponMatchStrategy {
      */
     @Override
     public boolean isMatch(OrderVO orderVO, Coupon coupon) {
-        if (coupon.getCouponType() == 3 && orderVO.getPrice() >= coupon.getTargetMoney()&& orderVO.getCheckInDate().compareTo(coupon.getStartTime()) >= 0 && orderVO.getCheckInDate().compareTo(coupon.getEndTime()) <= 0) {
+        if (coupon.getCouponType() == 3 && orderVO.getPrice() >= coupon.getTargetMoney()&& orderVO.getCreateDate().compareTo(coupon.getStartTime()) >= 0 && orderVO.getCreateDate().compareTo(coupon.getEndTime()) <= 0) {
             //已经符和满减条件，下面判断是否符和会员
 
 

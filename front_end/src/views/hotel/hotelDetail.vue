@@ -48,9 +48,9 @@
                                 <a-icon type="check-circle" theme="twoTone" two-tone-color="#e72b48" style="font-size: 24px;" class="label" v-if="hotelFlag=='曾撤销订单'"></a-icon>
                                 <span class="value" style="color: #e72b48" v-if="hotelFlag=='曾撤销订单'">{{hotelFlag}}</span>
                             </div>
-                            <div class="items">
-                                <a-button type="primary" size="large" icon="search" @click="showAtlas(null)" ghost >查看酒店图册</a-button>
-                            </div>
+<!--                            <div class="items">-->
+<!--                                <a-button type="primary" size="large" icon="search" @click="showAtlas(null)" ghost >查看酒店图册</a-button>-->
+<!--                            </div>-->
                         </div>
                     </div>
 
