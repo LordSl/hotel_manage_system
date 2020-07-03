@@ -1,7 +1,9 @@
 package com.example.hotel.bl.admin;
 
 import com.example.hotel.vo.*;
-Service
+import org.springframework.stereotype.Service;
+
+@Service
 /**
  * 用户
  */
