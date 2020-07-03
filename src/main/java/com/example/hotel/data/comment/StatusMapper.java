@@ -18,8 +18,6 @@ public interface StatusMapper {
      */
     int insertCommentStatus(CommentStatus commentStatus);
 
-//    int updateCommentStatus(@Param("userId") Integer userId,@Param("commentId") Integer commentId,@Param("state") Integer state);
-
     /**
      * 删除一条记录用户对评论的点赞
      * @param userId

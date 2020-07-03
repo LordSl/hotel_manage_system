@@ -57,5 +57,10 @@ public interface CouponService {
      */
     int deleteCoupon(Integer id);
 
+    /**
+     * 根据酒店获取所有展示的优惠策略
+     * @param hotelId
+     * @return
+     */
     List<CouponVO> getCouponForDisplay(int hotelId);
 }

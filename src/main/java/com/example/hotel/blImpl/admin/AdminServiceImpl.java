@@ -3,9 +3,11 @@ package com.example.hotel.blImpl.admin;
 import com.example.hotel.bl.admin.AdminService;
 import com.example.hotel.data.admin.AdminMapper;
 import com.example.hotel.data.advertisement.AdvertisementMapper;
-import com.example.hotel.enums.UserType;
 import com.example.hotel.po.User;
-import com.example.hotel.vo.*;
+import com.example.hotel.vo.ResponseVO;
+import com.example.hotel.vo.UserForm;
+import com.example.hotel.vo.UserInfoVO;
+import com.example.hotel.vo.UserVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,7 @@ public class AdminServiceImpl implements AdminService {
     AdminMapper adminMapper;
     @Autowired
     AdvertisementMapper advertisementMapper;
+
     @Override
     public ResponseVO addManager(UserForm userForm) {
         User user = new User();
@@ -53,7 +56,7 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public ResponseVO deleteManager(Integer userId){
+    public ResponseVO deleteManager(Integer userId) {
 
         try {
             adminMapper.deleteManager(userId);
@@ -68,10 +71,10 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public ResponseVO getAllManagers() {
         try {
-            List<User> users=adminMapper.getAllManagers();
-            return ResponseVO.buildSuccess(users.stream().map(u->{
-                UserVO userVO=new UserVO();
-                BeanUtils.copyProperties(u,userVO);
+            List<User> users = adminMapper.getAllManagers();
+            return ResponseVO.buildSuccess(users.stream().map(u -> {
+                UserVO userVO = new UserVO();
+                BeanUtils.copyProperties(u, userVO);
                 return userVO;
             }).collect(Collectors.toList()));
         } catch (Exception e) {
@@ -91,7 +94,5 @@ public class AdminServiceImpl implements AdminService {
             System.out.println(e.getMessage());
             return ResponseVO.buildFailure("添加广告失败");
         }
-
-        
     }
 }

@@ -1,6 +1,5 @@
 package com.example.hotel.data.user;
 
-import com.example.hotel.po.CreditChange;
 import com.example.hotel.po.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;

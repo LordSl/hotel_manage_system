@@ -1,8 +1,5 @@
 package com.example.hotel.po;
 
-import com.example.hotel.enums.BizRegion;
-import com.example.hotel.enums.HotelStar;
-
 public class Hotel {
 
     /**

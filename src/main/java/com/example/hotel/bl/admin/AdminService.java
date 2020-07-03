@@ -1,9 +1,9 @@
 package com.example.hotel.bl.admin;
 
 import com.example.hotel.vo.*;
-Service
+
 /**
- * 用户
+ * 用户Service
  */
 public interface AdminService {
 

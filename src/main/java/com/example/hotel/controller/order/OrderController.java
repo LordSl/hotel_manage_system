@@ -7,11 +7,6 @@ import com.example.hotel.vo.ResponseVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-/**
- * @Author: chenyizong
- * @Date: 2020-02-29
- */
-
 
 @RestController()
 @RequestMapping("/api/order")

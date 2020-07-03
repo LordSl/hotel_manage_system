@@ -1,6 +1,5 @@
 package com.example.hotel.po;
 
-import com.example.hotel.enums.RoomType;
 
 public class HotelRoom {
 

@@ -3,9 +3,7 @@ package com.example.hotel.blImpl.hotel;
 import com.example.hotel.bl.hotel.RoomService;
 import com.example.hotel.bl.order.OrderService;
 import com.example.hotel.data.hotel.RoomMapper;
-import com.example.hotel.po.Hotel;
 import com.example.hotel.po.HotelRoom;
-import com.example.hotel.po.Order;
 import com.example.hotel.vo.OrderVO;
 import com.example.hotel.vo.ResponseVO;
 import com.example.hotel.vo.RoomVO;
@@ -62,7 +60,6 @@ public class RoomServiceImpl implements RoomService {
     public ResponseVO updateRoom(RoomVO hotelRoom){
         HotelRoom room=new HotelRoom();
         BeanUtils.copyProperties(hotelRoom,room);
-
         try {
             roomMapper.updateRoom(room);
             return ResponseVO.buildSuccess("更新成功");
@@ -112,7 +109,6 @@ public class RoomServiceImpl implements RoomService {
     }
 
     public ResponseVO deleteRoom(Integer roomId){
-
         try {
             roomMapper.deleteRoom(roomId);
             return ResponseVO.buildSuccess("删除成功");

@@ -1,8 +1,5 @@
 package com.example.hotel.po;
 
-import com.example.hotel.vo.RoomVO;
-
-import java.util.Date;
 
 /**
  * @Author: chenyizong

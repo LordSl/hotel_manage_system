@@ -1,8 +1,6 @@
 package com.example.hotel.data.vipHotel;
 
-import com.example.hotel.po.Hotel;
 import com.example.hotel.po.VIPHotel;
-import com.example.hotel.vo.HotelVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 

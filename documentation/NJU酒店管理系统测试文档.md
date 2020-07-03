@@ -87,7 +87,7 @@
 | TUS7-2     | Account       | UserForm userForm=new UserForm(); UserVO userVO=accountService.login(userForm); | 根据用户账户邮箱及密码来获取用户信息                         | 得到特定邮箱的用户信息               | login                |
 | TUS8-1     | VIPHotel      | vipHotelService.isVIPCouple(1,1);                            | 根据用户id,酒店id来获取用户是否为该就酒店的会员，返回false   | 得到false                            | isVIPCouple          |
 
-#### 2.2.3 功能测试
+#### 2.2.3 系统/功能测试
 
 ##### 2.2.3.1 测试结果概述
 

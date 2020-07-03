@@ -26,14 +26,6 @@ public interface HotelService {
     ResponseVO updateHotelInfo(HotelVO hotelVO) throws ServiceException;
 
     /**
-     * 预订酒店修改剩余客房信息
-     * @param hotelId
-     * @param roomType
-     * @param rooms
-     */
-    ResponseVO updateRoomInfo(Integer hotelId, String roomType,Integer rooms);
-
-    /**
      * 删除酒店
      * @param hotelId
      */

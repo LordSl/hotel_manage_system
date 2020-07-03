@@ -7,12 +7,11 @@ import com.example.hotel.data.advertisement.AdvertisementMapper;
 import com.example.hotel.data.hotel.HotelMapper;
 import com.example.hotel.po.Advertisement;
 import com.example.hotel.vo.AdvertisementVO;
-import com.example.hotel.vo.AppealVO;
 import com.example.hotel.vo.HotelVO;
 import com.example.hotel.vo.ResponseVO;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,8 +33,8 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     public ResponseVO getAdvertisementList() {
         try {
             List<AdvertisementVO> results = new ArrayList<>();
-            List<Advertisement>got = advertisementMapper.getAdvertisementList();
-            for(int i = 0; i< got.size();i++){
+            List<Advertisement> got = advertisementMapper.getAdvertisementList();
+            for (int i = 0; i < got.size(); i++) {
                 AdvertisementVO advertisementVO = new AdvertisementVO();
                 advertisementVO.setAdId(got.get(i).getAdId());
                 advertisementVO.setHotelId(got.get(i).getHotelId());
@@ -54,8 +53,8 @@ public class AdvertisementServiceImpl implements AdvertisementService {
 
     @Override
     public ResponseVO deleteAD(int id) {
-        List<AdvertisementVO>got = (List<AdvertisementVO>)advertisementService.getAdvertisementList().getContent();
-        if(got.size() == 1){
+        List<AdvertisementVO> got = (List<AdvertisementVO>) advertisementService.getAdvertisementList().getContent();
+        if (got.size() == 1) {
             return ResponseVO.buildFailure("至少有一张广告");
         }
         try {
@@ -65,14 +64,13 @@ public class AdvertisementServiceImpl implements AdvertisementService {
             System.out.println(e.getMessage());
             return ResponseVO.buildFailure("获取广告失败");
         }
-
     }
 
     @Override
     public ResponseVO addADImg(String imgUrl) {
         try {
             advertisementMapper.addADImg(imgUrl);
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             return ResponseVO.buildFailure("上传图片失败");
         }
@@ -88,6 +86,5 @@ public class AdvertisementServiceImpl implements AdvertisementService {
             System.out.println(e.getMessage());
             return ResponseVO.buildFailure("绑定酒店失败");
         }
-
     }
 }
