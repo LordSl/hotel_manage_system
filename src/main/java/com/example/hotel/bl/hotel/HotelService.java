@@ -1,19 +1,14 @@
 package com.example.hotel.bl.hotel;
 
-import com.example.hotel.enums.BizRegion;
-import com.example.hotel.enums.HotelStar;
-import com.example.hotel.po.HotelRoom;
-import com.example.hotel.po.Order;
 import com.example.hotel.util.ServiceException;
-import com.example.hotel.vo.CouponVO;
 import com.example.hotel.vo.HotelVO;
 import com.example.hotel.vo.OrderVO;
 import com.example.hotel.vo.ResponseVO;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import java.time.LocalDateTime;
 import java.util.List;
 
+/**
+ * 酒店的Service层
+ */
 public interface HotelService {
 
     /**
@@ -28,7 +23,7 @@ public interface HotelService {
      * @param hotelVO
      * @throws ServiceException
      */
-    void updateHotelInfo(HotelVO hotelVO) throws ServiceException;
+    ResponseVO updateHotelInfo(HotelVO hotelVO) throws ServiceException;
 
     /**
      * 预订酒店修改剩余客房信息
@@ -36,13 +31,13 @@ public interface HotelService {
      * @param roomType
      * @param rooms
      */
-    void updateRoomInfo(Integer hotelId, String roomType,Integer rooms);
+    ResponseVO updateRoomInfo(Integer hotelId, String roomType,Integer rooms);
 
     /**
      * 删除酒店
      * @param hotelId
      */
-    void deleteHotel(Integer hotelId);
+    ResponseVO deleteHotel(Integer hotelId);
 
     /**
      * 根据hotel名字获得所有hotel

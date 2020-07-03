@@ -27,6 +27,7 @@ public class HotelServiceImpl implements HotelService {
 
 
     @Autowired HotelService hotelService;
+
     @Autowired
     private HotelMapper hotelMapper;
 
@@ -63,11 +64,18 @@ public class HotelServiceImpl implements HotelService {
         BeanUtils.copyProperties(hotelVO,hotel);
         hotel.setHotelName(hotelVO.getName());
         hotel.setManagerId(manager.getId());
-        hotelMapper.insertHotel(hotel);
-        return ResponseVO.buildSuccess(true);
+
+        try {
+            hotelMapper.insertHotel(hotel);
+            return ResponseVO.buildSuccess(true);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return ResponseVO.buildFailure("添加酒店失败");
+        }
+
     }
     @Override
-    public void updateHotelInfo(HotelVO hotelVO) throws ServiceException {
+    public ResponseVO updateHotelInfo(HotelVO hotelVO) throws ServiceException {
         Hotel hotel = new Hotel();
         hotel.setId(hotelVO.getId());
         hotel.setDescription(hotelVO.getDescription());
@@ -80,22 +88,36 @@ public class HotelServiceImpl implements HotelService {
         hotel.setHotelStar(hotelVO.getHotelStar());
         hotel.setLongitude(hotelVO.getLongitude());
         hotel.setLatitude(hotelVO.getLatitude());
-        hotelMapper.updateHotelInfo(hotel);
+        try {
+            hotelMapper.updateHotelInfo(hotel);
+            return ResponseVO.buildSuccess("更新成功");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return ResponseVO.buildFailure("获取广告失败");
+        }
+
     }
 
     @Override
-    public void updateRoomInfo(Integer hotelId, String roomType, Integer rooms) {
-        roomService.updateRoomInfo(hotelId,roomType,rooms);
+    public ResponseVO updateRoomInfo(Integer hotelId, String roomType, Integer rooms) {
+        return roomService.updateRoomInfo(hotelId,roomType,rooms);
     }
 
     @Override
-    public void deleteHotel(Integer hotelId){
-        hotelMapper.deleteHotel(hotelId);
+    public ResponseVO deleteHotel(Integer hotelId){
+
+        try {
+            hotelMapper.deleteHotel(hotelId);
+            return ResponseVO.buildSuccess("删除成功");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return ResponseVO.buildFailure("获取广告失败");
+        }
     }
 
     @Override
     public List<HotelVO> getHotelListByName(String hotelName) {
-        List<HotelVO>allHotel = retrieveHotels();
+        List<HotelVO>allHotel = hotelService.retrieveHotels();
         List<HotelVO>matchedList = new ArrayList<>();
         hotelName = hotelName.trim();
         for (HotelVO hotelVO:allHotel){

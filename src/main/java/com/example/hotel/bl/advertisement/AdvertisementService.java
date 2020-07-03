@@ -1,17 +1,16 @@
 package com.example.hotel.bl.advertisement;
-
-import com.example.hotel.vo.AdvertisementVO;
 import com.example.hotel.vo.ResponseVO;
 
-import java.util.List;
-
+/**
+ * 广告Service
+ */
 public interface AdvertisementService {
 
     /**
      * 获取所有广告
      * @return
      */
-    List<AdvertisementVO> getAdvertisementList();
+    ResponseVO getAdvertisementList();
 
     /**
      * 删除酒店

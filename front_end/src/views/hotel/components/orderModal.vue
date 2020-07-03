@@ -256,7 +256,7 @@
                             haveChild: this.form.getFieldValue('haveChild'),
                             phoneNum:this.form.getFieldValue('phoneNumber'),
                             clientName:this.form.getFieldValue('clientName'),
-                            createDate: moment().format('YYYY-MM-DD hh:mm:ss a'),
+                            createDate: moment().format('YYYY-MM-DD hh:mm:ss'),
                             price: this.checkedList.length > 0 ? this.finalPrice: this.totalPrice
                         }
                         console.log(data)
@@ -272,6 +272,7 @@
                             this.totalPrice=''
                             this.finalPrice=''
                             this.set_orderMatchCouponList({})
+                            this.checkedList=[]
                         })
                     }
                 });
@@ -286,6 +287,7 @@
                     roomNum: this.form.getFieldValue('roomNum'),
                     checkIn: moment(this.form.getFieldValue('date')[0]).format('YYYY-MM-DD'),
                     checkOut: moment(this.form.getFieldValue('date')[1]).format('YYYY-MM-DD'),
+                    createDate: moment().add(12,"hours").format('YYYY-MM-DD hh:mm:ss'),
                 }
                 if(data.orderPrice!=''){
                     this.getOrderMatchCoupons(data)

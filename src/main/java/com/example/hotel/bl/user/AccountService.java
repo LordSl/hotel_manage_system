@@ -1,5 +1,6 @@
 package com.example.hotel.bl.user;
 
+import com.example.hotel.po.CreditChange;
 import com.example.hotel.po.User;
 import com.example.hotel.vo.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -87,5 +88,10 @@ public interface AccountService {
      */
     ResponseVO getCreditChangeListByUserId(int userId);
 
+    /**
+     * 增加信用记录
+     * @param creditChangeVO
+     * @return
+     */
     ResponseVO addCreditChangeRecord(CreditChangeVO creditChangeVO);
 }

@@ -1,10 +1,14 @@
 package com.example.hotel.bl.vipHotel;
 
 import com.example.hotel.vo.HotelVO;
+import com.example.hotel.vo.ResponseVO;
 import com.example.hotel.vo.UserVO;
 
 import java.util.List;
 
+/**
+ * 酒店会员Service层
+ */
 public interface VipHotelService {
 
     /**
@@ -12,7 +16,7 @@ public interface VipHotelService {
      * @param userId
      * @param hotelId
      */
-    void registerAsHotelVIP(int userId, int hotelId);
+    ResponseVO registerAsHotelVIP(int userId, int hotelId);
 
     /**
      * 判断是否用户是否满足酒店vip优惠
@@ -41,5 +45,5 @@ public interface VipHotelService {
      * @param userId
      * @param hotelId
      */
-    void deleteVIPHotel(int userId, int hotelId);
+    ResponseVO deleteVIPHotel(int userId, int hotelId);
 }

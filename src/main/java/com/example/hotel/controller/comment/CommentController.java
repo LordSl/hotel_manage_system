@@ -51,8 +51,8 @@ public class CommentController {
 
     @GetMapping("/reply/like")
     public ResponseVO increaseReplyLike(@RequestParam Integer id,@RequestParam Integer num){
-        replyService.updateReplyLike(id,num);
-        return ResponseVO.buildSuccess(true);
+
+        return replyService.updateReplyLike(id,num);
     }
 
     @GetMapping("/user/{id}")

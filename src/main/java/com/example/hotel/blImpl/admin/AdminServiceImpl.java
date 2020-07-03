@@ -13,10 +13,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * @Author: chenyizong
- * @Date: 2020-03-04
- */
 @Service
 public class AdminServiceImpl implements AdminService {
     private final static String ACCOUNT_EXIST = "账号已存在";
@@ -57,23 +53,45 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public void deleteManager(Integer userId){
-        adminMapper.deleteManager(userId);
+    public ResponseVO deleteManager(Integer userId){
+
+        try {
+            adminMapper.deleteManager(userId);
+            return ResponseVO.buildSuccess(true);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return ResponseVO.buildFailure("删除用户失败");
+        }
+
     }
 
     @Override
-    public List<UserVO> getAllManagers() {
-        List<User> users=adminMapper.getAllManagers();
+    public ResponseVO getAllManagers() {
+        try {
+            List<User> users=adminMapper.getAllManagers();
+            return ResponseVO.buildSuccess(users.stream().map(u->{
+                UserVO userVO=new UserVO();
+                BeanUtils.copyProperties(u,userVO);
+                return userVO;
+            }).collect(Collectors.toList()));
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return ResponseVO.buildFailure("获取所有用户失败");
+        }
 
-        return users.stream().map(u->{
-            UserVO userVO=new UserVO();
-            BeanUtils.copyProperties(u,userVO);
-            return userVO;
-        }).collect(Collectors.toList());
+
     }
 
     @Override
-    public void uploadAD(String imgUrl) {
-        advertisementMapper.uploadAD(imgUrl);
+    public ResponseVO uploadAD(String imgUrl) {
+        try {
+            advertisementMapper.uploadAD(imgUrl);
+            return ResponseVO.buildSuccess(true);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return ResponseVO.buildFailure("添加广告失败");
+        }
+
+        
     }
 }

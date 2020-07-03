@@ -5,6 +5,9 @@ import com.example.hotel.po.Coupon;
 import com.example.hotel.vo.CouponVO;
 import com.example.hotel.vo.OrderVO;
 
+/**
+ * 判断订单是否满足优惠的Service层
+ */
 public interface CouponMatchStrategy {
 
     /**

@@ -21,7 +21,6 @@ public class RoomServiceImpl implements RoomService {
 
     @Autowired
     private RoomMapper roomMapper;
-
     @Autowired
     private OrderService orderService;
     @Override
@@ -35,21 +34,42 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public void insertRoomInfo(RoomVO hotelRoom) {
+    public ResponseVO insertRoomInfo(RoomVO hotelRoom) {
         HotelRoom room=new HotelRoom();
         BeanUtils.copyProperties(hotelRoom,room);
-        roomMapper.insertRoom(room);
+        try {
+            roomMapper.insertRoom(room);
+            return ResponseVO.buildSuccess("插入房间信息成功");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return ResponseVO.buildFailure("获取广告失败");
+        }
+
     }
 
     @Override
-    public void updateRoomInfo(Integer hotelId, String roomType, Integer rooms) {
-        roomMapper.updateRoomInfo(hotelId,roomType,rooms);
+    public ResponseVO updateRoomInfo(Integer hotelId, String roomType, Integer rooms) {
+        try {
+            roomMapper.updateRoomInfo(hotelId,roomType,rooms);
+            return ResponseVO.buildSuccess("更新成功");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return ResponseVO.buildFailure("更新房间信息失败");
+        }
+
     }
 
-    public void updateRoom(RoomVO hotelRoom){
+    public ResponseVO updateRoom(RoomVO hotelRoom){
         HotelRoom room=new HotelRoom();
         BeanUtils.copyProperties(hotelRoom,room);
-        roomMapper.updateRoom(room);
+
+        try {
+            roomMapper.updateRoom(room);
+            return ResponseVO.buildSuccess("更新成功");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return ResponseVO.buildFailure("更新房间信息失败");
+        }
     }
 
     @Override
@@ -63,7 +83,7 @@ public class RoomServiceImpl implements RoomService {
         int total=roomMapper.getRoomCurNum(roomId);
         for(int i=0;i<orderList.size();i++){
             OrderVO order=orderList.get(i);
-            if(roomId==order.getRoomId()&&(order.getCheckInDate().compareTo(checkInDate)>=0&&order.getCheckInDate().compareTo(checkOutDate)<0||
+            if(roomId==order.getRoomId()&&(order.getOrderState().equals("已入住")||order.getOrderState().equals("已撤销"))&&(order.getCheckInDate().compareTo(checkInDate)>=0&&order.getCheckInDate().compareTo(checkOutDate)<0||
                     order.getCheckOutDate().compareTo(checkInDate)>0&&order.getCheckOutDate().compareTo(checkOutDate)<=0||
                         order.getCheckInDate().compareTo(checkInDate)<=0&&order.getCheckOutDate().compareTo(checkOutDate)>=0)){
                 total-=order.getRoomNum();
@@ -91,7 +111,15 @@ public class RoomServiceImpl implements RoomService {
         return roomVO;
     }
 
-    public void deleteRoom(Integer roomId){
-        roomMapper.deleteRoom(roomId);
+    public ResponseVO deleteRoom(Integer roomId){
+
+        try {
+            roomMapper.deleteRoom(roomId);
+            return ResponseVO.buildSuccess("删除成功");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return ResponseVO.buildFailure("获取广告失败");
+        }
+
     }
 }

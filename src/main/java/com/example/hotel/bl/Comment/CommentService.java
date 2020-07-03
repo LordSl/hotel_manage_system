@@ -1,11 +1,14 @@
 package com.example.hotel.bl.Comment;
 
-import com.example.hotel.po.Comment;
+
 import com.example.hotel.vo.CommentVO;
 import com.example.hotel.vo.ResponseVO;
 
 import java.util.List;
 
+/**
+ * 评论Service
+ */
 public interface CommentService {
 
     /**

@@ -3,6 +3,7 @@ package com.example.hotel.util;
 import org.springframework.http.HttpStatus;
 
 public class ServiceException extends Exception {
+
     private int error;
 
     public ServiceException() {

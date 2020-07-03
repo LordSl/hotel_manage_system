@@ -1,11 +1,13 @@
 package com.example.hotel.bl.hotel;
 
-import com.example.hotel.po.HPic;
 import com.example.hotel.vo.HPicVO;
 import com.example.hotel.vo.ResponseVO;
-
 import java.util.List;
 
+
+/**
+ * 酒店图册Service
+ */
 public interface HPicService {
 
     /**

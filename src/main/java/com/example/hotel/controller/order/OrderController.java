@@ -22,7 +22,6 @@ public class OrderController {
 
     @PostMapping("/addOrder")
     public ResponseVO reserveHotel(@RequestBody OrderVO orderVO){
-        System.out.println();
 
         return orderService.addOrder(orderVO);
     }
