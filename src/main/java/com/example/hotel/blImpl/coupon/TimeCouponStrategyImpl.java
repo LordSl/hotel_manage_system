@@ -19,7 +19,7 @@ public class TimeCouponStrategyImpl implements CouponMatchStrategy {
      */
     @Override
     public boolean isMatch(OrderVO orderVO, Coupon coupon) {
-        if(coupon.getCouponType() == 4 && orderVO.getCreateDate().compareTo(coupon.getStartTime().toString()) >= 0 && orderVO.getCreateDate().compareTo(coupon.getEndTime().toString()) <= 0){
+        if(coupon.getCouponType() == 4  && orderVO.getCheckInDate().compareTo(coupon.getStartTime()) >= 0 && orderVO.getCheckInDate().compareTo(coupon.getEndTime()) <= 0){
             //符和限时优惠的条件了
             //已经符和满减条件，下面判断是否符和会员
 
