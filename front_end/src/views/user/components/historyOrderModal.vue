@@ -17,9 +17,7 @@
                         <span>￥{{ text }}</span>
                     </span>
                 <span slot="roomType" slot-scope="text">
-                        <span v-if="text == 'BigBed'">大床房</span>
-                        <span v-if="text == 'DoubleBed'">双床房</span>
-                        <span v-if="text == 'Family'">家庭房</span>
+                        <span >{{text}}</span>
                     </span>
 
                 <span slot = "orderState" slot-scope="record">
