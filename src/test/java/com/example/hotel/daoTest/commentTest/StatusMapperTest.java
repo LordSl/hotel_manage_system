@@ -2,7 +2,6 @@ package com.example.hotel.daoTest.commentTest;
 
 import com.example.hotel.data.comment.StatusMapper;
 import com.example.hotel.po.CommentStatus;
-import javafx.scene.media.MediaPlayer;
 import junit.framework.TestCase;
 import org.junit.Test;
 import org.junit.runner.RunWith;
