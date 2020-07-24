@@ -3,7 +3,6 @@ package com.example.hotel.serviceTest.Stubs;
 import com.example.hotel.bl.coupon.CouponService;
 import com.example.hotel.po.Coupon;
 import com.example.hotel.vo.*;
-import sun.awt.image.ImageWatched;
 
 import java.util.LinkedList;
 import java.util.List;
