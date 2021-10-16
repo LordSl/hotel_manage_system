@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: com.example.hotel.serviceTest.orderTest.OrderServiceTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.03 s <<< FAILURE! - in com.example.hotel.serviceTest.orderTest.OrderServiceTest
+addOrder(com.example.hotel.serviceTest.orderTest.OrderServiceTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalArgumentException: Source must not be null
+	at com.example.hotel.serviceTest.orderTest.OrderServiceTest.addOrder(OrderServiceTest.java:29)
+

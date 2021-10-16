@@ -1,0 +1,18 @@
+-------------------------------------------------------------------------------
+Test set: com.example.hotel.daoTest.userTest.AccountMapperTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.039 s <<< FAILURE! - in com.example.hotel.daoTest.userTest.AccountMapperTest
+testCreateNewAccount(com.example.hotel.daoTest.userTest.AccountMapperTest)  Time elapsed: 0.011 s  <<< ERROR!
+org.springframework.dao.DuplicateKeyException: 
+
+### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '21@qq.com' for key 'user.email'
+### The error may exist in file [C:\Users\xgs\IdeaProjects\hotel_manage_system\target\classes\dataImpl\user\AccountMapper.xml]
+### The error may involve com.example.hotel.data.user.AccountMapper.createNewAccount-Inline
+### The error occurred while setting parameters
+### SQL: insert into User(email,password,username,phonenumber,credit,usertype)         values(?,?,?,?,?,?)
+### Cause: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '21@qq.com' for key 'user.email'
+; Duplicate entry '21@qq.com' for key 'user.email'; nested exception is java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '21@qq.com' for key 'user.email'
+	at com.example.hotel.daoTest.userTest.AccountMapperTest.testCreateNewAccount(AccountMapperTest.java:24)
+Caused by: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '21@qq.com' for key 'user.email'
+	at com.example.hotel.daoTest.userTest.AccountMapperTest.testCreateNewAccount(AccountMapperTest.java:24)
+

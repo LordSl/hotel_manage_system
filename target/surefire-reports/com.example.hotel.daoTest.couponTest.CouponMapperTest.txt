@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: com.example.hotel.daoTest.couponTest.CouponMapperTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.045 s <<< FAILURE! - in com.example.hotel.daoTest.couponTest.CouponMapperTest
+testDeleteCoupon(com.example.hotel.daoTest.couponTest.CouponMapperTest)  Time elapsed: 0.01 s  <<< FAILURE!
+junit.framework.AssertionFailedError: expected:<1> but was:<0>
+	at com.example.hotel.daoTest.couponTest.CouponMapperTest.testDeleteCoupon(CouponMapperTest.java:31)
+

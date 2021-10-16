@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: com.example.hotel.ControllerTest.hotelTest.HotelControllerTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.1 s <<< FAILURE! - in com.example.hotel.ControllerTest.hotelTest.HotelControllerTest
+createHotel(com.example.hotel.ControllerTest.hotelTest.HotelControllerTest)  Time elapsed: 0.004 s  <<< FAILURE!
+java.lang.AssertionError: expected:<true> but was:<false>
+	at com.example.hotel.ControllerTest.hotelTest.HotelControllerTest.createHotel(HotelControllerTest.java:37)
+

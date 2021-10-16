@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: com.example.hotel.ControllerTest.couponTest.CouponControllerTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.05 s <<< FAILURE! - in com.example.hotel.ControllerTest.couponTest.CouponControllerTest
+getHotelAllCoupons(com.example.hotel.ControllerTest.couponTest.CouponControllerTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.ClassCastException: com.example.hotel.vo.ResponseVO cannot be cast to java.util.List
+	at com.example.hotel.ControllerTest.couponTest.CouponControllerTest.getHotelAllCoupons(CouponControllerTest.java:27)
+

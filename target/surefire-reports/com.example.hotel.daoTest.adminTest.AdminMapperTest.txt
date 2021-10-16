@@ -1,0 +1,26 @@
+-------------------------------------------------------------------------------
+Test set: com.example.hotel.daoTest.adminTest.AdminMapperTest
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 2, Errors: 1, Skipped: 0, Time elapsed: 0.032 s <<< FAILURE! - in com.example.hotel.daoTest.adminTest.AdminMapperTest
+testDeleteManager(com.example.hotel.daoTest.adminTest.AdminMapperTest)  Time elapsed: 0 s  <<< FAILURE!
+junit.framework.AssertionFailedError: expected:<1> but was:<0>
+	at com.example.hotel.daoTest.adminTest.AdminMapperTest.testDeleteManager(AdminMapperTest.java:44)
+
+testGetAllManagers(com.example.hotel.daoTest.adminTest.AdminMapperTest)  Time elapsed: 0 s  <<< FAILURE!
+junit.framework.AssertionFailedError: expected:<3> but was:<7>
+	at com.example.hotel.daoTest.adminTest.AdminMapperTest.testGetAllManagers(AdminMapperTest.java:50)
+
+testAddManager(com.example.hotel.daoTest.adminTest.AdminMapperTest)  Time elapsed: 0.01 s  <<< ERROR!
+org.springframework.dao.DuplicateKeyException: 
+
+### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '123@qq.com' for key 'user.email'
+### The error may exist in file [C:\Users\xgs\IdeaProjects\hotel_manage_system\target\classes\dataImpl\admin\AdminMapper.xml]
+### The error may involve com.example.hotel.data.admin.AdminMapper.addManager-Inline
+### The error occurred while setting parameters
+### SQL: insert into User(email,password,usertype)         values(?,?,?)
+### Cause: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '123@qq.com' for key 'user.email'
+; Duplicate entry '123@qq.com' for key 'user.email'; nested exception is java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '123@qq.com' for key 'user.email'
+	at com.example.hotel.daoTest.adminTest.AdminMapperTest.testAddManager(AdminMapperTest.java:27)
+Caused by: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '123@qq.com' for key 'user.email'
+	at com.example.hotel.daoTest.adminTest.AdminMapperTest.testAddManager(AdminMapperTest.java:27)
+

@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: com.example.hotel.serviceTest.commentTest.ReplyServiceTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.02 s <<< FAILURE! - in com.example.hotel.serviceTest.commentTest.ReplyServiceTest
+deleteReplyById(com.example.hotel.serviceTest.commentTest.ReplyServiceTest)  Time elapsed: 0.005 s  <<< FAILURE!
+java.lang.AssertionError: expected:<true> but was:<false>
+	at com.example.hotel.serviceTest.commentTest.ReplyServiceTest.deleteReplyById(ReplyServiceTest.java:33)
+

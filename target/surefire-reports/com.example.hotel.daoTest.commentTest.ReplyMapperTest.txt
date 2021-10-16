@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: com.example.hotel.daoTest.commentTest.ReplyMapperTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.032 s <<< FAILURE! - in com.example.hotel.daoTest.commentTest.ReplyMapperTest
+testDeleteReply(com.example.hotel.daoTest.commentTest.ReplyMapperTest)  Time elapsed: 0.002 s  <<< FAILURE!
+junit.framework.AssertionFailedError: expected:<1> but was:<0>
+	at com.example.hotel.daoTest.commentTest.ReplyMapperTest.testDeleteReply(ReplyMapperTest.java:31)
+

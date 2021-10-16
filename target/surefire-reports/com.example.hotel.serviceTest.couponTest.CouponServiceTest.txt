@@ -1,0 +1,12 @@
+-------------------------------------------------------------------------------
+Test set: com.example.hotel.serviceTest.couponTest.CouponServiceTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 0.03 s <<< FAILURE! - in com.example.hotel.serviceTest.couponTest.CouponServiceTest
+getHotelAllCoupon(com.example.hotel.serviceTest.couponTest.CouponServiceTest)  Time elapsed: 0 s  <<< FAILURE!
+java.lang.AssertionError: expected:<1> but was:<0>
+	at com.example.hotel.serviceTest.couponTest.CouponServiceTest.getHotelAllCoupon(CouponServiceTest.java:26)
+
+deleteCoupon(com.example.hotel.serviceTest.couponTest.CouponServiceTest)  Time elapsed: 0 s  <<< FAILURE!
+java.lang.AssertionError: expected:<1> but was:<0>
+	at com.example.hotel.serviceTest.couponTest.CouponServiceTest.deleteCoupon(CouponServiceTest.java:32)
+

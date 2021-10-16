@@ -1,0 +1,12 @@
+-------------------------------------------------------------------------------
+Test set: com.example.hotel.serviceTest.adminTest.AdminServiceTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 0.051 s <<< FAILURE! - in com.example.hotel.serviceTest.adminTest.AdminServiceTest
+addManager(com.example.hotel.serviceTest.adminTest.AdminServiceTest)  Time elapsed: 0.008 s  <<< FAILURE!
+java.lang.AssertionError: expected:<true> but was:<false>
+	at com.example.hotel.serviceTest.adminTest.AdminServiceTest.addManager(AdminServiceTest.java:34)
+
+getAllManagers(com.example.hotel.serviceTest.adminTest.AdminServiceTest)  Time elapsed: 0.013 s  <<< FAILURE!
+java.lang.AssertionError: expected:<5> but was:<7>
+	at com.example.hotel.serviceTest.adminTest.AdminServiceTest.getAllManagers(AdminServiceTest.java:40)
+

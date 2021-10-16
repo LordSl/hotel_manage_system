@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: com.example.hotel.serviceTest.userTest.AccountServiceTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.031 s <<< FAILURE! - in com.example.hotel.serviceTest.userTest.AccountServiceTest
+login(com.example.hotel.serviceTest.userTest.AccountServiceTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.NullPointerException
+	at com.example.hotel.serviceTest.userTest.AccountServiceTest.login(AccountServiceTest.java:29)
+

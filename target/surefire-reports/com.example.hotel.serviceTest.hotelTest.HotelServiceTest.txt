@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: com.example.hotel.serviceTest.hotelTest.HotelServiceTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.032 s <<< FAILURE! - in com.example.hotel.serviceTest.hotelTest.HotelServiceTest
+addHotel(com.example.hotel.serviceTest.hotelTest.HotelServiceTest)  Time elapsed: 0.01 s  <<< FAILURE!
+java.lang.AssertionError: expected:<true> but was:<false>
+	at com.example.hotel.serviceTest.hotelTest.HotelServiceTest.addHotel(HotelServiceTest.java:42)
+

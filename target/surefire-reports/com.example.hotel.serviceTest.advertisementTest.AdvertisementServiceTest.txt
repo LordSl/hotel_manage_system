@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: com.example.hotel.serviceTest.advertisementTest.AdvertisementServiceTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.04 s <<< FAILURE! - in com.example.hotel.serviceTest.advertisementTest.AdvertisementServiceTest
+getAdvertisementList(com.example.hotel.serviceTest.advertisementTest.AdvertisementServiceTest)  Time elapsed: 0 s  <<< FAILURE!
+java.lang.AssertionError: expected:<5> but was:<8>
+	at com.example.hotel.serviceTest.advertisementTest.AdvertisementServiceTest.getAdvertisementList(AdvertisementServiceTest.java:28)
+

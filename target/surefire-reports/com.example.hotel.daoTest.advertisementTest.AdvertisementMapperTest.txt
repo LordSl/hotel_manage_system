@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: com.example.hotel.daoTest.advertisementTest.AdvertisementMapperTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.022 s <<< FAILURE! - in com.example.hotel.daoTest.advertisementTest.AdvertisementMapperTest
+testGetAdvertisementList(com.example.hotel.daoTest.advertisementTest.AdvertisementMapperTest)  Time elapsed: 0.005 s  <<< FAILURE!
+junit.framework.AssertionFailedError: expected:<4> but was:<7>
+	at com.example.hotel.daoTest.advertisementTest.AdvertisementMapperTest.testGetAdvertisementList(AdvertisementMapperTest.java:24)
+

@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: com.example.hotel.daoTest.commentTest.StatusMapperTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.029 s <<< FAILURE! - in com.example.hotel.daoTest.commentTest.StatusMapperTest
+testGetCommentStatus(com.example.hotel.daoTest.commentTest.StatusMapperTest)  Time elapsed: 0.004 s  <<< FAILURE!
+junit.framework.AssertionFailedError: expected:<1> but was:<7>
+	at com.example.hotel.daoTest.commentTest.StatusMapperTest.testGetCommentStatus(StatusMapperTest.java:33)
+
